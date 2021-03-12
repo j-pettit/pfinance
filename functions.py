@@ -7,6 +7,6 @@ def compound_interest(principle, rate_per_period, periods, compoundings_per_peri
     total_periods = periods * compoundings_per_period
     return principle * ((1 + effective_rate) ** total_periods)
 
-
-print(simple_interest(100, 0.10, 10))
-print(compound_interest(100, 0.10, 10, 12))
+print('run tests')
+print(simple_interest(100, 0.10, 10), '200')
+print(compound_interest(100, 0.10, 10, 12), '270.70')
