@@ -7,6 +7,14 @@ def compound_interest(principle, rate_per_period, periods, compoundings_per_peri
     total_periods = periods * compoundings_per_period
     return principle * ((1 + effective_rate) ** total_periods)
 
+def future_value_series(payment, rate_per_period, periods, compoundings_per_period, start_of_period=False):
+    effective_rate = rate_per_period / compoundings_per_period
+    total_periods = periods * compoundings_per_period
+    start_of_period_modifier = 1
+    if start_of_period:
+        start_of_period_modifier = 1 + effective_rate
+    return payment * ((((1 + effective_rate) ** total_periods) - 1) / (effective_rate)) * start_of_period_modifier
+
 print('run tests')
 print(simple_interest(100, 0.10, 10), '200')
 print(compound_interest(100, 0.10, 10, 12), '270.70')
