@@ -1,2 +1,2 @@
 # financial-tools
-Collection of react webapp financial tools
+Python financial mathematics library
