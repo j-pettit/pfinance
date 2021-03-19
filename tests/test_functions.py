@@ -5,6 +5,9 @@
 #     print(f'{future_value_series(100, 0.05, 10, 12):.2f} : 15528.23')
 #     print(f'{future_value_series(100, 0.05, 10, 12, True):.2f} : 15592.93')
 
+# test = calculate_acb([(100, 10, 10), (-50, 10, 10)])
+# print(test)
+
 from py-finance import functions # this doesn't work, modules with -?
 
 def test_simple_interest():

@@ -14,3 +14,16 @@ def future_value_series(payment, rate_per_period, periods, compoundings_per_peri
     if start_of_period:
         start_of_period_modifier = 1 + effective_rate
     return payment * ((((1 + effective_rate) ** total_periods) - 1) / (effective_rate)) * start_of_period_modifier
+
+def calculate_acb(transactions):
+    total_shares = 0
+    book_value = 0
+    for t in transactions:
+        (shares, price, commission) = t
+        if shares > 0:
+            total_shares += shares
+            book_value += shares * price + commission
+        else:
+            total_shares += shares
+            book_value += shares * price
+    return book_value / total_shares
