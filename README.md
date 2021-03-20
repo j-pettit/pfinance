@@ -1,4 +1,4 @@
-# py-finance
+# pfinance
 Python financial mathematics library
 
 ## TODO list (incomprehensive)

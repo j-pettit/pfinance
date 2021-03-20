@@ -8,7 +8,7 @@
 # test = calculate_acb([(100, 10, 10), (-50, 10, 10)])
 # print(test)
 
-from py-finance import functions # this doesn't work, modules with -?
+from pfinance import functions # this doesn't work, modules with -?
 
 def test_simple_interest():
     assert functions.simple_interest(100, 0.10, 10) == 200.0
