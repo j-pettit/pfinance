@@ -9,8 +9,6 @@ Python financial mathematics library
 - decide on a style guide/best practices for variable names, etc.
 - setup a github action to do versioning and releasing
 - get this thing actually hosted on PyPI/installable with pip
-- add a license to it (probably GPL or MIT)
-- come up with a name for the package
 
 ## Stuff in the venv
 - wheel
