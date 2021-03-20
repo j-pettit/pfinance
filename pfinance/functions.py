@@ -27,3 +27,11 @@ def calculate_acb(transactions):
             total_shares += shares
             book_value += shares * price
     return book_value / total_shares
+
+def auto_loan_monthly_payment(vehicle_price, down_payment, interest_apr_percent, loan_term_months):
+    # Interest compounded and applied monthly.
+    interest_apr = interest_apr_percent / 100
+    loan_amount = vehicle_price - down_payment
+    numerator = loan_amount * (interest_apr/12) * (1 + interest_apr/12)**loan_term_months
+    denominator = (1 + interest_apr/12)**loan_term_months - 1
+    return round(numerator / denominator, 2)
