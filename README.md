@@ -16,3 +16,9 @@ Python financial mathematics library
 - twine
 - pytest
 - pytest-runner
+
+## Building and installing the library
+- Clone the repo
+- Navigate to the install directory
+- Run `python setup.py bdist_wheel`
+- Run `pip install ./dist/<wheel file>`
