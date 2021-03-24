@@ -7,7 +7,9 @@ Python financial mathematics library
 - make the tests a thing that actually works
   - need to decide on testing style
 - decide on a style guide/best practices for variable names, etc.
-- setup a github action to do versioning and releasing
+- setup a github action
+  - versioning and releasing
+  - linting (pylint/flake8)
 - get this thing actually hosted on PyPI/installable with pip
 
 ## Stuff in the venv
