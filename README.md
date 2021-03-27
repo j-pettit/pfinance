@@ -1,7 +1,19 @@
 # pfinance
-Python financial mathematics library
+Python financial mathematics library.
+
+## Installation
+### Using pip
+
+- run `pip install pfinance`
+
+### Building from source
+
+- clone the repo
+- run `python setup.py bdist_wheel`
 
 ## Publishing to PyPI
+
+Package builds are automatically published to PyPI on each version bump. Version changes should follow standard [semantic versioning guideline](https://semver.org/).
 
 ## TODO list (incomprehensive)
 - add content
@@ -20,9 +32,3 @@ Python financial mathematics library
 - twine
 - pytest
 - pytest-runner
-
-## Building and installing the library
-- Clone the repo
-- Navigate to the install directory
-- Run `python setup.py bdist_wheel`
-- Run `pip install ./dist/<wheel file>`
