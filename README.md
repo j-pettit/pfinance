@@ -1,6 +1,8 @@
 # pfinance
 Python financial mathematics library
 
+## Publishing to PyPI
+
 ## TODO list (incomprehensive)
 - add content
   - decide what content we actually want in this. Just functions? Models?
