@@ -21,10 +21,8 @@ Package builds are automatically published to PyPI on each version bump. Version
 - make the tests a thing that actually works
   - need to decide on testing style
 - decide on a style guide/best practices for variable names, etc.
-- setup a github action
-  - versioning and releasing
-  - linting (pylint/flake8)
 - get this thing actually hosted on PyPI/installable with pip
+- add a requirements.txt for packages
 
 ## Stuff in the venv
 - wheel
