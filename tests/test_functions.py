@@ -33,7 +33,8 @@
 #     print(func.auto_loan_monthly_payment(21431, 4147, 1.92, 48), ': 374.38')
 #     print(func.auto_loan_monthly_payment(44065, 12789, 2.38, 60), ': 553.41')
 
-from pfinance import functions # this doesn't work, modules with -?
+from pfinance import functions
+
 
 def test_simple_interest():
     assert functions.simple_interest(100, 0.10, 10) == 200.0
