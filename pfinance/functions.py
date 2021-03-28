@@ -1,11 +1,24 @@
-def simple_interest(principle, rate_per_period, periods):
-    interest = rate_per_period * periods
+def simple_interest(principle: float, interest_rate: float, periods: int) -> float:
+    '''
+    Returns the total value of an investment earning simple interest.
+
+        Parameters:
+            principle (float): Present value of the investment
+            interest_rate (float): The interest rate per investment period, e.g. year
+            periods (int): The term of the investment, e.g. years
+
+        Returns:
+            future_value (float): The value of the investment after the term
+    '''
+    interest = interest_rate * periods
     return principle * (1 + interest)
 
-def compound_interest(principle, rate_per_period, periods, compoundings_per_period):
+
+def compound_interest(principle: float, rate_per_period: float, periods: int, compoundings_per_period: int) -> float:
     effective_rate = rate_per_period / compoundings_per_period
     total_periods = periods * compoundings_per_period
     return principle * ((1 + effective_rate) ** total_periods)
+
 
 def future_value_series(payment, rate_per_period, periods, compoundings_per_period, start_of_period=False):
     effective_rate = rate_per_period / compoundings_per_period
@@ -14,6 +27,7 @@ def future_value_series(payment, rate_per_period, periods, compoundings_per_peri
     if start_of_period:
         start_of_period_modifier = 1 + effective_rate
     return payment * ((((1 + effective_rate) ** total_periods) - 1) / (effective_rate)) * start_of_period_modifier
+
 
 def calculate_acb(transactions):
     total_shares = 0
@@ -27,6 +41,7 @@ def calculate_acb(transactions):
             total_shares += shares
             book_value += shares * price
     return book_value / total_shares
+
 
 def auto_loan_monthly_payment(vehicle_price, down_payment, interest_apr_percent, loan_term_months):
     # Interest compounded and applied monthly.
