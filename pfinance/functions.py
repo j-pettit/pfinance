@@ -52,6 +52,9 @@ def future_value_series(
         Returns:
             future_value (float): Value of the investment after the term
     '''
+    if interest_rate == 0:
+        return payment * periods
+
     effective_rate = interest_rate / compounding_frequency
     total_periods = periods * compounding_frequency
     start_modifier = 1
