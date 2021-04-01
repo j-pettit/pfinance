@@ -18,10 +18,6 @@ Package builds are automatically published to PyPI on each version bump. Version
 ## TODO list (incomprehensive)
 - add content
   - decide what content we actually want in this. Just functions? Models?
-- make the tests a thing that actually works
-  - need to decide on testing style
-- decide on a style guide/best practices for variable names, etc.
-- get this thing actually hosted on PyPI/installable with pip
 - add a requirements.txt for packages
 
 ## Stuff in the venv
