@@ -27,5 +27,5 @@ Package builds are automatically published to PyPI on each version bump. Version
 - add support for automated installation of required packages in a local virtual env
 - use commit tagging for versioning
 - content:
-
+  - more functions
 
