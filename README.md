@@ -15,14 +15,17 @@ Python financial mathematics library.
 
 Package builds are automatically published to PyPI on each version bump. Version changes should follow standard [semantic versioning guidelines](https://semver.org/).
 
-## TODO list (incomprehensive)
-- add content
-  - decide what content we actually want in this. Just functions? Models?
-- add a requirements.txt for packages
+## Required packages for local builds and tests
+- `wheel`
+- `setuptools`
+- `twine`
+- `pytest`
+- `pytest-runner`
 
-## Stuff in the venv
-- wheel
-- setuptools
-- twine
-- pytest
-- pytest-runner
+## TODO list
+- create a requirements.txt file including the required development packages
+- add support for automated installation of required packages in a local virtual env
+- use commit tagging for versioning
+- content:
+  - more functions
+
