@@ -14,6 +14,7 @@ Python financial mathematics library.
 Package builds are automatically published to PyPI on each version bump. Version changes should follow standard [semantic versioning guidelines](https://semver.org/).
 
 ## TODO list
+- add CONTRIBUTING file
 - use commit tagging for versioning
 - content:
   - more functions
