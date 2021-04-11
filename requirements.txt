@@ -1,0 +1,10 @@
+# Package build requirements
+wheel
+setuptools
+
+# Deployment requirements
+twine
+
+# Test requirements
+pytest
+pytest-runner

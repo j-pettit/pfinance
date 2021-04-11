@@ -2,7 +2,7 @@ from setuptools import find_packages, setup
 
 setup(
     name='pfinance',
-    version='0.0.5',
+    version='0.0.6',
     author='Julian Pettit',
     license='MIT',
     description='Financial mathematics library',
