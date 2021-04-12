@@ -15,6 +15,6 @@ Package builds are automatically published to PyPI on each version bump. Version
 
 ## TODO list
 - add CONTRIBUTING file
-- use commit tagging for versioning
 - content:
-  - more functions
+  - adjust cost basis
+  - discounted cash flow
