@@ -85,6 +85,25 @@ def loan_payment(principal: float, interest_rate: float, payment_frequency: int,
     return loan_amount * effective_rate * (1 + effective_rate) ** term / ((1 + effective_rate) ** term - 1)
 
 
+class adjusted_cost_base:
+    '''
+    Represents an adjusted cost base tracker
+
+    Attributes:
+
+
+    Methods:
+
+    '''
+    def __init__(self):
+        '''
+        Constructs the necessary attributes for the adjusted cost base tracker object.
+
+        Parameters:
+
+        '''
+
+
 def calculate_acb(transactions):
     total_shares = 0
     book_value = 0
