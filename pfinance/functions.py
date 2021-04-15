@@ -128,8 +128,13 @@ class adjusted_cost_base:
             capital_gain (float): The capital gain on the sale
         '''
         self._shares -= quantity
-        self._book_value -= quantity * self._acb
-        return (quantity * unit_price - commission) - (quantity * self._acb)
+        capital_gain = (quantity * unit_price - commission) - (quantity * self._acb)
+        if self._shares == 0:
+            self._book_value = 0
+            self._acb = 0
+        else:
+            self._book_value -= quantity * self._acb
+        return capital_gain
 
     def get_acb(self):
         '''
