@@ -89,30 +89,53 @@ class adjusted_cost_base:
     '''
     Represents an adjusted cost base tracker
 
-    Attributes:
-
-
     Methods:
-
+        buy(quantity, unit_price, commission): Records a purchase transaction
+        sell(quantity, unit_price, commission): Records a sale transaction
+        get_acb(): Returns the adjusted cost base of the position
     '''
     def __init__(self):
         '''
         Constructs the necessary attributes for the adjusted cost base tracker object.
+        '''
+        self._book_value = 0
+        self._acb = 0
+        self._shares = 0
+
+    def buy(self, quantity: int, unit_price: float, commission: float = 0):
+        '''
+        Records a purchase transaction.
 
         Parameters:
-
+            quantity (int): Number of securities purchased
+            unit_price (float): Price per security paid
+            commission (float): Commission paid in the transaction, default 0
         '''
+        self._shares += quantity
+        self._book_value += quantity * unit_price + commission
+        self._acb = self._book_value / self._shares
 
+    def sell(self, quantity: int, unit_price: float, commission: float = 0):
+        '''
+        Records a sale transaction.
 
-def calculate_acb(transactions):
-    total_shares = 0
-    book_value = 0
-    for t in transactions:
-        (shares, price, commission) = t
-        if shares > 0:
-            total_shares += shares
-            book_value += shares * price + commission
-        else:
-            total_shares += shares
-            book_value += shares * price
-    return book_value / total_shares
+        Parameters:
+            quantity (int): Number of securities sold
+            unit_price (float): Price per security received
+            commission (float): Commission paid in the transaction, default 0
+
+        Returns:
+            capital_gain (float): The capital gain on the sale
+        '''
+        self._shares -= quantity
+        self._book_value -= quantity * self._acb
+        return (quantity * unit_price - commission) - (quantity * self._acb)
+
+    def get_acb(self):
+        '''
+        Returns the adjusted cost base of the position
+
+        Returns:
+            acb (float): Adjusted cost base of the position
+        '''
+        return self._acb
