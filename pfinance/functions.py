@@ -85,6 +85,23 @@ def loan_payment(principal: float, interest_rate: float, payment_frequency: int,
     return loan_amount * effective_rate * (1 + effective_rate) ** term / ((1 + effective_rate) ** term - 1)
 
 
+def discounted_cash_flow(cash_flows: list[float], discount_rate: float):
+    '''
+    Returns the discounted cash flow of a series of future cash flows.
+
+        Parameters:
+            cash_flows (list[float]): Future cash flows ordered chronologically
+            discount_rate (float): Discount rate of the cash flows
+
+        Returns:
+            discounted_cash_flow (float): Adjusted present value of the future cash flows.
+    '''
+    dcf = 0
+    for i, cf in enumerate(cash_flows):
+        dcf += cf / (1 + discount_rate) ** (i + 1)
+    return dcf
+
+
 class adjusted_cost_base:
     '''
     Represents an adjusted cost base tracker
