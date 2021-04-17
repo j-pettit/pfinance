@@ -10,12 +10,15 @@ def test_compound_interest():
     assert functions.compound_interest(100, 0, 10) == 100.00
     assert round(functions.compound_interest(100, 0.10, 10, 12), 2) == 270.70
 
-
 def test_future_value_series():
     assert functions.future_value_series(100, 0, 10) == 1000.00
     assert round(functions.future_value_series(100, 0.05, 10, 12), 2) == 15528.23
     assert round(functions.future_value_series(100, 0.05, 10, 12, True), 2) == 15592.93
 
+def test_present_value():
+    assert functions.present_value(100, 0, 12, 0, False) == -1200.00
+    assert round(functions.present_value(500, 0.06, 48, 9000, False), 2) == -8374.00
+    assert round(functions.present_value(200, 0.07, 36, 1000, True), 2) == -2877.07
 
 def test_loan_payment():
     assert functions.loan_payment(1000, 0, 1, 10) == 100.00
