@@ -23,6 +23,11 @@ def test_loan_payment():
     assert round(functions.loan_payment(150000, 0.10, 12, 60, 50000), 2) == 2124.70
 
 
+def test_discounted_cash_flow():
+    assert functions.discounted_cash_flow([], 0) == 0.00
+    assert round(functions.discounted_cash_flow([1000, 1000, 4000, 4000, 6000], 0.05), 2) == 13306.73
+
+
 def test_adjusted_cost_base():
     test_acb = functions.adjusted_cost_base()
     test_acb.buy(10, 10.00, 5.00)
