@@ -63,10 +63,11 @@ def future_value_series(
     return payment * start_modifier * (((1 + effective_rate) ** total_periods) - 1) / effective_rate
 
 
-def present_value(payment: float, 
-    interest_rate: float, 
-    periods: int, 
-    future_value: float = 0, 
+def present_value(
+    payment: float,
+    interest_rate: float,
+    periods: int,
+    future_value: float = 0,
     start_of_period: bool = False
 ) -> float:
     '''
@@ -81,14 +82,14 @@ def present_value(payment: float,
     '''
     if interest_rate == 0:
         return (-1 * payment * periods) - future_value
-    
+
     if start_of_period:
         pv_type = 1
     else:
         pv_type = 0
 
-    return -1 * (payment * (1 + interest_rate * pv_type) * ((1 + interest_rate) ** periods - 1) / interest_rate
-                + future_value) / ((1 + interest_rate) ** periods)
+    return -1 * (payment * (1 + interest_rate * pv_type) * ((1 + interest_rate) ** periods - 1)
+                 / interest_rate + future_value) / ((1 + interest_rate) ** periods)
 
 
 def loan_payment(principal: float, interest_rate: float, payment_frequency: int, term: int, down_payment: float = 0) -> float:
