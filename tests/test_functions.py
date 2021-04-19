@@ -28,6 +28,12 @@ def test_discounted_cash_flow():
     assert round(functions.discounted_cash_flow([1000, 1000, 4000, 4000, 6000], 0.05), 2) == 13306.73
 
 
+def test_bond_coupon_rate():
+    assert functions.bond_coupon_rate(1000, 0) == 0.00
+    assert functions.bond_coupon_rate(1000, 10) == 0.01
+    assert functions.bond_coupon_rate(1000, 25, 5) == 0.125
+
+
 def test_adjusted_cost_base():
     test_acb = functions.adjusted_cost_base()
     test_acb.buy(10, 10.00, 5.00)
