@@ -85,7 +85,7 @@ def loan_payment(principal: float, interest_rate: float, payment_frequency: int,
     return loan_amount * effective_rate * (1 + effective_rate) ** term / ((1 + effective_rate) ** term - 1)
 
 
-def discounted_cash_flow(cash_flows: list[float], discount_rate: float):
+def discounted_cash_flow(cash_flows: list[float], discount_rate: float) -> float:
     '''
     Returns the discounted cash flow of a series of future cash flows.
 
@@ -132,7 +132,7 @@ class adjusted_cost_base:
         self._book_value += quantity * unit_price + commission
         self._acb = self._book_value / self._shares
 
-    def sell(self, quantity: int, unit_price: float, commission: float = 0):
+    def sell(self, quantity: int, unit_price: float, commission: float = 0) -> float:
         '''
         Records a sale transaction.
 
@@ -153,7 +153,7 @@ class adjusted_cost_base:
             self._book_value -= quantity * self._acb
         return capital_gain
 
-    def get_acb(self):
+    def get_acb(self) -> float:
         '''
         Returns the adjusted cost base of the position
 
