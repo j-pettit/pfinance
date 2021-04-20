@@ -28,6 +28,14 @@ def test_discounted_cash_flow():
     assert round(functions.discounted_cash_flow([1000, 1000, 4000, 4000, 6000], 0.05), 2) == 13306.73
 
 
+def test_modified_internal_rate_of_return():
+    assert functions.modified_internal_rate_of_return([], 0.1, 0.1) is None
+    assert functions.modified_internal_rate_of_return([10, 10], 0.1, 0.1) is None
+    assert functions.modified_internal_rate_of_return([-10, -10], 0.1, 0.1) is None
+    assert round(functions.modified_internal_rate_of_return([-120000, 39000, 30000, 21000, 37000], 0.1, 0.12), 3) == 0.063
+    assert round(functions.modified_internal_rate_of_return([24, -96, -52, 27, -17, 15, -2, 0, 0], 0.05, 0.07), 3) == -0.056
+
+
 def test_adjusted_cost_base():
     test_acb = functions.adjusted_cost_base()
     test_acb.buy(10, 10.00, 5.00)
