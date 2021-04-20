@@ -79,6 +79,9 @@ def present_value(
             periods (int): Number of payments made over the term of the investment
             future_value (float): The total cash amount you want to have at the last payment, default 0
             start_of_period (bool): Payment is made at start of each period, default False
+
+        Returns:
+            present_value (float): Present value of a loan or investment
     '''
     if interest_rate == 0:
         return (-1 * payment * periods) - future_value
