@@ -63,35 +63,6 @@ def future_value_series(
     return payment * start_modifier * (((1 + effective_rate) ** total_periods) - 1) / effective_rate
 
 
-def present_value(
-    payment: float,
-    interest_rate: float,
-    periods: int,
-    future_value: float = 0,
-    start_of_period: bool = False
-) -> float:
-    '''
-    Returns the present value of a loan or investment based on a constant interest rate.
-
-        Parameters:
-            payment (float): The regular payment made each period
-            interest_rate (float): The interest rate per period, e.g. year
-            periods (int): Number of payments made over the term of the investment
-            future_value (float): The total cash amount you want to have at the last payment, default 0
-            start_of_period (bool): Payment is made at start of each period, default False
-    '''
-    if interest_rate == 0:
-        return (-1 * payment * periods) - future_value
-
-    if start_of_period:
-        pv_type = 1
-    else:
-        pv_type = 0
-
-    return -1 * (payment * (1 + interest_rate * pv_type) * ((1 + interest_rate) ** periods - 1)
-                 / interest_rate + future_value) / ((1 + interest_rate) ** periods)
-
-
 def loan_payment(principal: float, interest_rate: float, payment_frequency: int, term: int, down_payment: float = 0) -> float:
     '''
     Returns the periodic payment required to repay a loan accruing compound interest.
@@ -195,7 +166,7 @@ class adjusted_cost_base:
         self._book_value += quantity * unit_price + commission
         self._acb = self._book_value / self._shares
 
-    def sell(self, quantity: int, unit_price: float, commission: float = 0):
+    def sell(self, quantity: int, unit_price: float, commission: float = 0) -> float:
         '''
         Records a sale transaction.
 
@@ -216,7 +187,7 @@ class adjusted_cost_base:
             self._book_value -= quantity * self._acb
         return capital_gain
 
-    def get_acb(self):
+    def get_acb(self) -> float:
         '''
         Returns the adjusted cost base of the position
 
