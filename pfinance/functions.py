@@ -79,6 +79,9 @@ def present_value(
             periods (int): Number of payments made over the term of the investment
             future_value (float): The total cash amount you want to have at the last payment, default 0
             start_of_period (bool): Payment is made at start of each period, default False
+
+        Returns:
+            present_value (float): Present value of a loan or investment
     '''
     if interest_rate == 0:
         return (-1 * payment * periods) - future_value
@@ -114,7 +117,7 @@ def loan_payment(principal: float, interest_rate: float, payment_frequency: int,
     return loan_amount * effective_rate * (1 + effective_rate) ** term / ((1 + effective_rate) ** term - 1)
 
 
-def discounted_cash_flow(cash_flows: list[float], discount_rate: float):
+def discounted_cash_flow(cash_flows: list[float], discount_rate: float) -> float:
     '''
     Returns the discounted cash flow of a series of future cash flows.
 
@@ -161,7 +164,7 @@ class adjusted_cost_base:
         self._book_value += quantity * unit_price + commission
         self._acb = self._book_value / self._shares
 
-    def sell(self, quantity: int, unit_price: float, commission: float = 0):
+    def sell(self, quantity: int, unit_price: float, commission: float = 0) -> float:
         '''
         Records a sale transaction.
 
@@ -182,7 +185,7 @@ class adjusted_cost_base:
             self._book_value -= quantity * self._acb
         return capital_gain
 
-    def get_acb(self):
+    def get_acb(self) -> float:
         '''
         Returns the adjusted cost base of the position
 
