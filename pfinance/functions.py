@@ -94,7 +94,7 @@ def discounted_cash_flow(cash_flows: list[float], discount_rate: float) -> float
             discount_rate (float): Discount rate of the cash flows
 
         Returns:
-            discounted_cash_flow (float): Adjusted present value of the future cash flows.
+            discounted_cash_flow (float): Adjusted present value of the future cash flows
     '''
     dcf = 0
     for i, cf in enumerate(cash_flows):
@@ -108,9 +108,13 @@ def modified_internal_rate_of_return(cash_flows: list[float], finance_rate: floa
     Considers both the cost of investment and the interest received on reinvested cash.
 
         Parameters:
-            cash_flows (list[float]): List of cash flows. Must contain at least one positive and negative value.
-            finance_rate (float): The interest rate you pay for money that is borrowed.
-            reinvest_rate (float): The interest rate you receive for money that is invested.
+            cash_flows (list[float]): List of cash flows ordered chronologically. Must contain at least one positive
+                                    and one negative value
+            finance_rate (float): The interest rate you pay for money that is borrowed
+            reinvest_rate (float): The interest rate you receive for money that is invested
+
+        Returns:
+            modified_internal_rate_of_return (float): Decimal value of the MIRR
     '''
     negative_values = []
     positive_values = []
