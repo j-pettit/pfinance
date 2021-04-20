@@ -102,6 +102,21 @@ def discounted_cash_flow(cash_flows: list[float], discount_rate: float) -> float
     return dcf
 
 
+def bond_coupon_rate(face_value: float, payment: float, payment_rate: int = 1) -> float:
+    '''
+    Returns the coupon rate of a bond.
+
+        Parameters:
+            face_value (float): Par value of the bond at issue
+            payment (float): Periodic payment from the bond
+            payment_rate (int): Payments per interest period, default 1
+
+        Returns:
+            coupon_rate (float): Effective interest rate returned by the bond
+    '''
+    return (payment * payment_rate) / face_value
+
+
 class adjusted_cost_base:
     '''
     Represents an adjusted cost base tracker
