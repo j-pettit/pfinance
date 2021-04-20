@@ -114,7 +114,7 @@ def loan_payment(principal: float, interest_rate: float, payment_frequency: int,
     return loan_amount * effective_rate * (1 + effective_rate) ** term / ((1 + effective_rate) ** term - 1)
 
 
-def discounted_cash_flow(cash_flows: list[float], discount_rate: float):
+def discounted_cash_flow(cash_flows: list[float], discount_rate: float) -> float:
     '''
     Returns the discounted cash flow of a series of future cash flows.
 
