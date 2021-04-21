@@ -104,7 +104,7 @@ def discounted_cash_flow(cash_flows: list[float], discount_rate: float) -> float
 
 def modified_internal_rate_of_return(cash_flows: list[float], finance_rate: float, reinvest_rate: float) -> float:
     '''
-    Returns the modified internal rate of return for a list of periodic cash flows. Returns None for invalid cash flows.
+    Returns the modified internal rate of return for a list of periodic cash flows.
     Considers both the cost of investment and the interest received on reinvested cash.
 
         Parameters:
@@ -114,7 +114,7 @@ def modified_internal_rate_of_return(cash_flows: list[float], finance_rate: floa
             reinvest_rate (float): The interest rate you receive for money that is invested
 
         Returns:
-            modified_internal_rate_of_return (float): Decimal value of the MIRR
+            modified_internal_rate_of_return (float): Decimal value of the MIRR, None for invalid cash flows
     '''
     negative_values = []
     positive_values = []
