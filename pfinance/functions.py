@@ -139,8 +139,8 @@ def modified_internal_rate_of_return(cash_flows: list[float], finance_rate: floa
 
     return (numerator / denominator) ** (1 / (n - 1)) - 1
 
-  
-  def bond_coupon_rate(face_value: float, payment: float, payment_rate: int = 1) -> float:
+
+def bond_coupon_rate(face_value: float, payment: float, payment_rate: int = 1) -> float:
     '''
     Returns the coupon rate of a bond.
 
