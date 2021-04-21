@@ -68,7 +68,7 @@ def present_value(
     interest_rate: float,
     periods: int,
     future_value: float = 0,
-    start_of_period: bool = False
+    start_of_period: bool = False,
 ) -> float:
     '''
     Returns the present value of a loan or investment based on a constant interest rate.
@@ -91,8 +91,10 @@ def present_value(
     else:
         pv_type = 0
 
-    return -1 * (payment * (1 + interest_rate * pv_type) * ((1 + interest_rate) ** periods - 1)
-                 / interest_rate + future_value) / ((1 + interest_rate) ** periods)
+    numerator = payment * (1 + interest_rate * pv_type) * ((1 + interest_rate) ** periods - 1) / interest_rate + future_value
+    denominator = (1 + interest_rate) ** periods
+
+    return -1 * numerator / denominator
 
 
 def loan_payment(principal: float, interest_rate: float, payment_frequency: int, term: int, down_payment: float = 0) -> float:
