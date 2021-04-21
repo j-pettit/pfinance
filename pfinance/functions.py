@@ -94,12 +94,50 @@ def discounted_cash_flow(cash_flows: list[float], discount_rate: float) -> float
             discount_rate (float): Discount rate of the cash flows
 
         Returns:
-            discounted_cash_flow (float): Adjusted present value of the future cash flows.
+            discounted_cash_flow (float): Adjusted present value of the future cash flows
     '''
     dcf = 0
     for i, cf in enumerate(cash_flows):
         dcf += cf / (1 + discount_rate) ** (i + 1)
     return dcf
+
+
+def modified_internal_rate_of_return(cash_flows: list[float], finance_rate: float, reinvest_rate: float) -> float:
+    '''
+    Returns the modified internal rate of return for a list of periodic cash flows.
+    Considers both the cost of investment and the interest received on reinvested cash.
+
+        Parameters:
+            cash_flows (list[float]): List of cash flows ordered chronologically. Must contain at least one positive
+                                    and one negative value
+            finance_rate (float): The interest rate you pay for money that is borrowed
+            reinvest_rate (float): The interest rate you receive for money that is invested
+
+        Returns:
+            modified_internal_rate_of_return (float): Decimal value of the MIRR, None for invalid cash flows
+    '''
+    negative_values = []
+    positive_values = []
+
+    for value in cash_flows:
+        if value < 0:
+            negative_values.append(value)
+            positive_values.append(0.0)
+        elif value > 0:
+            positive_values.append(value)
+            negative_values.append(0.0)
+        else:
+            negative_values.append(0.0)
+            positive_values.append(0.0)
+
+    if (len(set(negative_values)) <= 1 or len(set(positive_values)) <= 1):
+        return None
+
+    n = len(cash_flows)
+    numerator = -1 * discounted_cash_flow(positive_values, reinvest_rate) * (1 + reinvest_rate) ** n
+    denominator = discounted_cash_flow(negative_values, finance_rate) * (1 + finance_rate)
+
+    return (numerator / denominator) ** (1 / (n - 1)) - 1
 
 
 def bond_coupon_rate(face_value: float, payment: float, payment_rate: int = 1) -> float:
