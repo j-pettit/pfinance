@@ -189,6 +189,21 @@ def bond_coupon_rate(face_value: float, payment: float, payment_rate: int = 1) -
     return (payment * payment_rate) / face_value
 
 
+def dollar_decimal(fractional_dollar: float, fraction: int) -> float:
+    '''
+    Converts a fractional dollar into a decimal dollar. For example, a value of 1.3 with fractional part 4 represents $1 + $3/4 = $1.75.
+
+        Parameters:
+            fractional_dollar (float): 
+    '''
+
+
+def dollar_fractional(decimal_dollar: float, fraction: int) -> float:
+    '''
+        TODO
+    '''
+
+
 class adjusted_cost_base:
     '''
     Represents an adjusted cost base tracker
