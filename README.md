@@ -40,7 +40,7 @@ pfinance is available via [PyPI](https://pypi.python.org/pypi/pfinance/). Instal
 $ python3 -m pip install pfinance
 ```
 
-**Note**: pfinance requires Python > 3.9 for full test annotation compatability, but may offer reduced functionality for earlier 3.x versions.
+**Note**: pfinance requires Python >= 3.9 for full test and annotation compatability, but may offer reduced functionality for earlier 3.x versions.
 
 ## Dependencies
 
