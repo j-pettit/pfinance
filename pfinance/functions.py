@@ -192,7 +192,7 @@ def bond_coupon_rate(face_value: float, payment: float, payment_rate: int = 1) -
 def dollar_decimal(fractional_dollar: float, fraction: int) -> float:
     '''
     Converts a fractional dollar into a decimal dollar.
-    For example, a value of 1.3 with fraction 4 represents $1 + $3/4 = $1.75.
+    For example, a value of 1.3 with fraction 4 represents 1 + 3/4 = 1.75.
 
         Parameters:
             fractional_dollar (float): A number expressed as an integer portion and a fractional
@@ -211,7 +211,15 @@ def dollar_decimal(fractional_dollar: float, fraction: int) -> float:
 
 def dollar_fractional(decimal_dollar: float, fraction: int) -> float:
     '''
-        TODO
+        Converts a decimal dollar into a fractional dollar.
+        For example, a value of 1.125 with fraction 16 repesents 1 + 12.5/100 = 1 + 2/16 = 1.02.
+
+            Parameters:
+                decimal_dollar (float): The decimal representation of the number.
+                fraction (int): The denominator of the fractional portion. Must be positive
+
+            Returns:
+                fractional_dollar (float): The dollar fractional representation of the decimal dollar.
     '''
 
 
