@@ -54,6 +54,12 @@ def test_dollar_decimal():
     assert round(functions.dollar_decimal(703.238, 23), 5) == 704.03478
 
 
+def test_dollar_fractional():
+    assert (round(functions.dollar_fractional(1.125, 16), 2)) == 1.02
+    assert (round(functions.dollar_fractional(1.125, 32), 2)) == 1.04
+    assert (round(functions.dollar_fractional(738.526, 29), 5)) == 738.15254
+
+
 def test_adjusted_cost_base():
     test_acb = functions.adjusted_cost_base()
     test_acb.buy(10, 10.00, 5.00)

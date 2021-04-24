@@ -221,6 +221,11 @@ def dollar_fractional(decimal_dollar: float, fraction: int) -> float:
             Returns:
                 fractional_dollar (float): The dollar fractional representation of the decimal dollar.
     '''
+    fraction_length = len(str(fraction))
+    integer_part = int(decimal_dollar)
+    mantissa_part = (decimal_dollar - integer_part) / 10 ** fraction_length
+
+    return(integer_part + mantissa_part * fraction)
 
 
 class adjusted_cost_base:
