@@ -32,6 +32,21 @@ def compound_interest(principle: float, interest_rate: float, periods: int, comp
     return principle * ((1 + effective_rate) ** total_periods)
 
 
+def effective_interest(nominal_rate: float, periods: int) -> float:
+    '''
+    Returns the effective annual interest rate.
+
+        Parameters:
+            nominal_rate (float): The nominal interest rate (i.e. APR).
+            periods (int): The number of compounding periods per year.
+
+        Returns:
+            effective_interest: The effective interest rate
+    '''
+
+    return (1 + nominal_rate / periods) ** periods - 1
+
+
 def future_value_series(
     payment: float,
     interest_rate: float,
