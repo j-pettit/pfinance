@@ -48,6 +48,12 @@ def test_bond_coupon_rate():
     assert functions.bond_coupon_rate(1000, 25, 5) == 0.125
 
 
+def test_dollar_decimal():
+    assert functions.dollar_decimal(1.2, 16) == 1.125
+    assert functions.dollar_decimal(1.2, 16) == 1.125
+    assert functions.dollar_decimal(1.2, 16) == 1.125
+
+
 def test_adjusted_cost_base():
     test_acb = functions.adjusted_cost_base()
     test_acb.buy(10, 10.00, 5.00)

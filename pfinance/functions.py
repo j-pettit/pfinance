@@ -191,11 +191,23 @@ def bond_coupon_rate(face_value: float, payment: float, payment_rate: int = 1) -
 
 def dollar_decimal(fractional_dollar: float, fraction: int) -> float:
     '''
-    Converts a fractional dollar into a decimal dollar. For example, a value of 1.3 with fractional part 4 represents $1 + $3/4 = $1.75.
+    Converts a fractional dollar into a decimal dollar. For example, a value of 1.3 with fraction 4 represents $1 + $3/4 = $1.75.
 
         Parameters:
-            fractional_dollar (float): 
+            fractional_dollar (float): A number expressed as an integer portion and a fractional portion, separated by a decimal.
+            fraction (int): The denominator of the fractional portion.
+
+        Returns:
+            decimal_dollar (float): The dollar decimal representation of the fractional dollar.
     '''
+    fraction_length = len(str(fraction))
+
+    integer_part = int(fractional_dollar)
+    mantissa_part = (fractional_dollar - integer_part) * 10 ** fraction_length
+
+    print(integer_part, mantissa_part, fraction_length)
+
+    return(integer_part + mantissa_part / fraction)
 
 
 def dollar_fractional(decimal_dollar: float, fraction: int) -> float:
@@ -263,3 +275,5 @@ class adjusted_cost_base:
             acb (float): Adjusted cost base of the position
         '''
         return self._acb
+
+print(dollar_decimal(1.1,32))
