@@ -143,7 +143,7 @@ def modified_internal_rate_of_return(cash_flows: list[float], finance_rate: floa
 
         Parameters:
             cash_flows (list[float]): List of cash flows ordered chronologically. Must contain at least one positive
-                                    and one negative value
+                                      and one negative value
             finance_rate (float): The interest rate you pay for money that is borrowed
             reinvest_rate (float): The interest rate you receive for money that is invested
 
@@ -187,6 +187,44 @@ def bond_coupon_rate(face_value: float, payment: float, payment_rate: int = 1) -
             coupon_rate (float): Effective interest rate returned by the bond
     '''
     return (payment * payment_rate) / face_value
+
+
+def norberts_gambit(
+    quantity: int,
+    purchase_price: float,
+    sale_price: float,
+    rate: float = 1,
+    purchase_commission: float = 0,
+    sale_commission: float = 0
+) -> dict[str, float]:
+    '''
+    Returns the converted value and capital gain of an execution of Norbert's Gambit
+
+        Parameters:
+            quantity (int): Number of securities transacted
+            purchase_price (float): Unit price of the purchased securities
+            sale_price (float): Unit price of the sold securities
+            rate (float): Exchange rate between the purchasing currency and the sale currency expressed as a multiplier of the
+                          purchasing currency, default 1
+            purchase_commission (float): Commission paid in the purchasing currency on the purchase transaction, default 0
+            sale_commission (float): Commission paid in the sale currency on the sale transaction, default 0
+
+        Returns:
+            gambit_result (dict):
+                base_value (float): Final value of the conversion expressed in the purchase currency
+                base_gain (float): Capital gain of the conversion expressed in the purchase currency
+                converted_value (float): Final value of the conversion expressed in the sale currency
+                converted_gain (float): Capital gain of the conversion expressed in the sale currency
+    '''
+    initial_value = quantity * purchase_price - purchase_commission
+    final_value = quantity * sale_price - sale_commission
+
+    return {
+        'base_value': final_value / rate,
+        'base_gain': (final_value / rate) - initial_value,
+        'converted_value': final_value,
+        'converted_gain': final_value - (initial_value * rate)
+    }
 
 
 class adjusted_cost_base:
