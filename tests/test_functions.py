@@ -49,9 +49,9 @@ def test_bond_coupon_rate():
 
 
 def test_dollar_decimal():
-    assert functions.dollar_decimal(1.2, 16) == 1.125
-    assert functions.dollar_decimal(1.2, 16) == 1.125
-    assert functions.dollar_decimal(1.2, 16) == 1.125
+    assert round(functions.dollar_decimal(1.2, 16), 2) == 2.25
+    assert round(functions.dollar_decimal(9000.4123, 200), 4) == 9002.0615
+    assert round(functions.dollar_decimal(703.238, 23), 5) == 704.03478
 
 
 def test_adjusted_cost_base():
