@@ -210,6 +210,7 @@ def dollar_decimal(fractional_dollar: float, fraction: int) -> float:
     return(integer_part + mantissa_part / fraction)
 
 
+
 def dollar_fractional(decimal_dollar: float, fraction: int) -> float:
     '''
         TODO
