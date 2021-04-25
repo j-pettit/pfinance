@@ -196,7 +196,7 @@ def dollar_decimal(fractional_dollar: float, fraction: int) -> float:
 
         Parameters:
             fractional_dollar (float): A number expressed as an integer portion and a fractional
-                                        portion, separated by a decimal.
+                                       portion, separated by a decimal.
             fraction (int): The denominator of the fractional portion. Must be positive.
 
         Returns:
@@ -211,15 +211,15 @@ def dollar_decimal(fractional_dollar: float, fraction: int) -> float:
 
 def dollar_fractional(decimal_dollar: float, fraction: int) -> float:
     '''
-        Converts a decimal dollar into a fractional dollar.
-        For example, a value of 1.125 with fraction 16 repesents 1 + 12.5/100 = 1 + 2/16 = 1.02.
+    Converts a decimal dollar into a fractional dollar.
+    For example, a value of 1.125 with fraction 16 repesents 1 + 12.5/100 = 1 + 2/16 = 1.02.
 
-            Parameters:
-                decimal_dollar (float): The decimal representation of the number.
-                fraction (int): The denominator of the fractional portion. Must be positive
+        Parameters:
+            decimal_dollar (float): The decimal representation of the number.
+            fraction (int): The denominator of the fractional portion. Must be positive
 
-            Returns:
-                fractional_dollar (float): The dollar fractional representation of the decimal dollar.
+        Returns:
+            fractional_dollar (float): The dollar fractional representation of the decimal dollar.
     '''
     fraction_length = len(str(fraction))
     integer_part = int(decimal_dollar)
