@@ -27,9 +27,22 @@ def compound_interest(principle: float, interest_rate: float, periods: int, comp
         Returns:
             future_value (float): Value of the investment after the term
     '''
-    effective_rate = interest_rate / compounding_frequency
-    total_periods = periods * compounding_frequency
-    return principle * ((1 + effective_rate) ** total_periods)
+    return principle * (1 + effective_interest(interest_rate, compounding_frequency)) ** periods
+
+
+def effective_interest(nominal_rate: float, periods: int) -> float:
+    '''
+    Returns the effective annual interest rate.
+
+        Parameters:
+            nominal_rate (float): The nominal interest rate (i.e. APR).
+            periods (int): The number of compounding periods per year.
+
+        Returns:
+            effective_interest: The effective interest rate
+    '''
+
+    return (1 + nominal_rate / periods) ** periods - 1
 
 
 def future_value_series(
@@ -187,6 +200,45 @@ def bond_coupon_rate(face_value: float, payment: float, payment_rate: int = 1) -
             coupon_rate (float): Effective interest rate returned by the bond
     '''
     return (payment * payment_rate) / face_value
+
+
+def dollar_decimal(fractional_dollar: float, fraction: int) -> float:
+    '''
+    Converts a fractional dollar into a decimal dollar.
+    For example, a value of 1.3 with fraction 4 represents 1 + 3/4 = 1.75.
+
+        Parameters:
+            fractional_dollar (float): A number expressed as an integer portion and a fractional
+                                       portion, separated by a decimal.
+            fraction (int): The denominator of the fractional portion. Must be positive.
+
+        Returns:
+            decimal_dollar (float): The dollar decimal representation of the fractional dollar.
+    '''
+    fraction_length = len(str(fraction))
+    integer_part = int(fractional_dollar)
+    mantissa_part = (fractional_dollar - integer_part) * 10 ** fraction_length
+
+    return(integer_part + mantissa_part / fraction)
+
+
+def dollar_fractional(decimal_dollar: float, fraction: int) -> float:
+    '''
+    Converts a decimal dollar into a fractional dollar.
+    For example, a value of 1.125 with fraction 16 repesents 1 + 12.5/100 = 1 + 2/16 = 1.02.
+
+        Parameters:
+            decimal_dollar (float): The decimal representation of the number.
+            fraction (int): The denominator of the fractional portion. Must be positive
+
+        Returns:
+            fractional_dollar (float): The dollar fractional representation of the decimal dollar.
+    '''
+    fraction_length = len(str(fraction))
+    integer_part = int(decimal_dollar)
+    mantissa_part = (decimal_dollar - integer_part) / 10 ** fraction_length
+
+    return(integer_part + mantissa_part * fraction)
 
 
 def norberts_gambit(
