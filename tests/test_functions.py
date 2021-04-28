@@ -12,6 +12,7 @@ def test_compound_interest():
 
 
 def test_effective_interest():
+    assert functions.effective_interest(0, 12) == 0
     assert round(functions.effective_interest(0.05, 12), 6) == 0.051162
     assert round(functions.effective_interest(0.0525, 4), 7) == 0.0535427
     assert round(functions.effective_interest(1.25, 7), 6) == 2.158576
