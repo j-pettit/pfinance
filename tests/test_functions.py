@@ -11,6 +11,13 @@ def test_compound_interest():
     assert round(functions.compound_interest(100, 0.10, 10, 12), 2) == 270.70
 
 
+def test_effective_interest():
+    assert functions.effective_interest(0, 12) == 0
+    assert round(functions.effective_interest(0.05, 12), 6) == 0.051162
+    assert round(functions.effective_interest(0.0525, 4), 7) == 0.0535427
+    assert round(functions.effective_interest(1.25, 7), 6) == 2.158576
+
+
 def test_future_value_series():
     assert functions.future_value_series(100, 0, 10) == 1000.00
     assert round(functions.future_value_series(100, 0.05, 10, 12), 2) == 15528.23
