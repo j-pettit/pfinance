@@ -67,6 +67,11 @@ def test_dollar_fractional():
     assert (round(functions.dollar_fractional(738.526, 29), 5)) == 738.15254
 
 
+def test_straight_line_depreciation():
+    assert round(functions.straight_line_depreciation(2000, 500, 5)) == 300
+    assert functions.straight_line_depreciation(30000, 7500, 10) == 2250
+
+
 def norberts_gambit():
     assert functions.norberts_gambit(0, 0, 0)['base_value'] == 0
     assert functions.norberts_gambit(10, 50, 45)['base_value'] == 450
