@@ -247,10 +247,10 @@ def norberts_gambit(
     sale_price: float,
     rate: float = 1,
     purchase_commission: float = 0,
-    sale_commission: float = 0
+    sale_commission: float = 0,
 ) -> dict[str, float]:
     '''
-    Returns the converted value and capital gain of an execution of Norbert's Gambit
+    Returns the converted value and capital gain of an execution of Norbert's Gambit.
 
         Parameters:
             quantity (int): Number of securities transacted
