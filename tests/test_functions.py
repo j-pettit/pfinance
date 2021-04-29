@@ -67,6 +67,11 @@ def test_dollar_fractional():
     assert (round(functions.dollar_fractional(738.526, 29), 5)) == 738.15254
 
 
+def test_straight_line_depreciation():
+    assert round(functions.straight_line_depreciation(2000, 500, 5)) == 300
+    assert functions.straight_line_depreciation(30000, 7500, 10) == 2250
+
+
 def test_adjusted_cost_base():
     test_acb = functions.adjusted_cost_base()
     test_acb.buy(10, 10.00, 5.00)
