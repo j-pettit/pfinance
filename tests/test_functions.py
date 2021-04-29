@@ -56,10 +56,10 @@ def norberts_gambit():
     assert functions.norberts_gambit(10, 10, 9, 1.1)['base_gain'] == -1
     assert functions.norberts_gambit(10, 10, 9, 1.1)['converted_value'] == 90
     assert round(functions.norberts_gambit(10, 10, 9, 1.1)['converted_gain'], 2) == 90.91
-    assert round(functions.norberts_gambit(20, 15, 10, 1.5, 7.5, 5)['base_value'], 2) == 292.5
-    assert round(functions.norberts_gambit(20, 15, 10, 1.5, 7.5, 5)['base_gain'], 2) == -15
-    assert round(functions.norberts_gambit(20, 15, 10, 1.5, 7.5, 5)['converted_value'], 2) == 195
-    assert round(functions.norberts_gambit(20, 15, 10, 1.5, 7.5, 5)['converted_gain'], 2) == -10
+    assert functions.norberts_gambit(20, 15, 10, 1.5, 7.5, 5)['base_value'] == 292.5
+    assert functions.norberts_gambit(20, 15, 10, 1.5, 7.5, 5)['base_gain'] == -15
+    assert functions.norberts_gambit(20, 15, 10, 1.5, 7.5, 5)['converted_value'] == 195
+    assert functions.norberts_gambit(20, 15, 10, 1.5, 7.5, 5)['converted_gain'] == -10
 
 
 def test_adjusted_cost_base():
