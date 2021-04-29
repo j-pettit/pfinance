@@ -275,7 +275,7 @@ def norberts_gambit(
         'base_value': final_value / rate,
         'base_gain': (final_value / rate) - initial_value,
         'converted_value': final_value,
-        'converted_gain': final_value - (initial_value * rate)
+        'converted_gain': final_value - (initial_value * rate),
     }
 
 
