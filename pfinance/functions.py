@@ -257,6 +257,44 @@ def straight_line_depreciation(purchase_price: float, salvage_value: float, usef
     return (purchase_price - salvage_value) / useful_life
 
 
+def norberts_gambit(
+    quantity: int,
+    purchase_price: float,
+    sale_price: float,
+    rate: float = 1,
+    purchase_commission: float = 0,
+    sale_commission: float = 0,
+) -> dict[str, float]:
+    '''
+    Returns the converted value and capital gain of an execution of Norbert's Gambit.
+
+        Parameters:
+            quantity (int): Number of securities transacted
+            purchase_price (float): Unit price of the purchased securities
+            sale_price (float): Unit price of the sold securities
+            rate (float): Exchange rate between the purchasing currency and the sale currency expressed as a multiplier of the
+                          purchasing currency, default 1
+            purchase_commission (float): Commission paid in the purchasing currency on the purchase transaction, default 0
+            sale_commission (float): Commission paid in the sale currency on the sale transaction, default 0
+
+        Returns:
+            gambit_result (dict):
+                base_value (float): Final value of the conversion expressed in the purchase currency
+                base_gain (float): Capital gain of the conversion expressed in the purchase currency
+                converted_value (float): Final value of the conversion expressed in the sale currency
+                converted_gain (float): Capital gain of the conversion expressed in the sale currency
+    '''
+    initial_value = quantity * purchase_price - purchase_commission
+    final_value = quantity * sale_price - sale_commission
+
+    return {
+        'base_value': final_value / rate,
+        'base_gain': (final_value / rate) - initial_value,
+        'converted_value': final_value,
+        'converted_gain': final_value - (initial_value * rate),
+    }
+
+
 class adjusted_cost_base:
     '''
     Represents an adjusted cost base tracker

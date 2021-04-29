@@ -72,6 +72,20 @@ def test_straight_line_depreciation():
     assert functions.straight_line_depreciation(30000, 7500, 10) == 2250
 
 
+def norberts_gambit():
+    assert functions.norberts_gambit(0, 0, 0)['base_value'] == 0
+    assert functions.norberts_gambit(10, 50, 45)['base_value'] == 450
+    assert functions.norberts_gambit(10, 50, 45)['base_gain'] == -50
+    assert functions.norberts_gambit(10, 10, 9, 1.1)['base_value'] == 99
+    assert functions.norberts_gambit(10, 10, 9, 1.1)['base_gain'] == -1
+    assert functions.norberts_gambit(10, 10, 9, 1.1)['converted_value'] == 90
+    assert round(functions.norberts_gambit(10, 10, 9, 1.1)['converted_gain'], 2) == 90.91
+    assert functions.norberts_gambit(20, 15, 10, 1.5, 7.5, 5)['base_value'] == 292.5
+    assert functions.norberts_gambit(20, 15, 10, 1.5, 7.5, 5)['base_gain'] == -15
+    assert functions.norberts_gambit(20, 15, 10, 1.5, 7.5, 5)['converted_value'] == 195
+    assert functions.norberts_gambit(20, 15, 10, 1.5, 7.5, 5)['converted_gain'] == -10
+
+
 def test_adjusted_cost_base():
     test_acb = functions.adjusted_cost_base()
     test_acb.buy(10, 10.00, 5.00)
