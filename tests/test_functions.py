@@ -72,6 +72,21 @@ def test_straight_line_depreciation():
     assert functions.straight_line_depreciation(30000, 7500, 10) == 2250
 
 
+def test_double_declining_balance_depreciation():
+    asset_value1 = [10000.0, 6000.0, 3600.0, 2160.0, 2000.0, 2000.0]
+    annual_depreciation1 = [0.0, 4000.0, 2400.0, 1440.0, 160.0, 0.0]
+    asset_value2 = [20000.0, 10000.0, 5000.0, 2500.0, 1250.00, 1000.0, 1000.0]
+    annual_depreciation2 = [0.0, 10000.0, 5000.0, 2500.0, 1250.0, 250.0, 0.0]
+    asset_value3 = [100.0, 100.0, 100.0]
+    annual_depreciation3 = [0.0, 0.0, 0.0]
+    assert functions.double_declining_balance_depreciation(10000, 2000, 5)['asset_value'] == asset_value1
+    assert functions.double_declining_balance_depreciation(10000, 2000, 5)['annual_depreciation'] == annual_depreciation1
+    assert functions.double_declining_balance_depreciation(20000, 1000, 6, 3)['asset_value'] == asset_value2
+    assert functions.double_declining_balance_depreciation(20000, 1000, 6, 3)['annual_depreciation'] == annual_depreciation2
+    assert functions.double_declining_balance_depreciation(100, 200, 2)['asset_value'] == asset_value3
+    assert functions.double_declining_balance_depreciation(100, 200, 2)['annual_depreciation'] == annual_depreciation3
+
+
 def norberts_gambit():
     assert functions.norberts_gambit(0, 0, 0)['base_value'] == 0
     assert functions.norberts_gambit(10, 50, 45)['base_value'] == 450
