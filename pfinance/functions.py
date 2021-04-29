@@ -35,8 +35,8 @@ def effective_interest(nominal_rate: float, periods: int) -> float:
     Returns the effective annual interest rate.
 
         Parameters:
-            nominal_rate (float): The nominal interest rate (i.e. APR).
-            periods (int): The number of compounding periods per year.
+            nominal_rate (float): The nominal interest rate (i.e. APR)
+            periods (int): The number of compounding periods per year
 
         Returns:
             effective_interest: The effective interest rate
@@ -156,7 +156,7 @@ def modified_internal_rate_of_return(cash_flows: list[float], finance_rate: floa
 
         Parameters:
             cash_flows (list[float]): List of cash flows ordered chronologically. Must contain at least one positive
-                                    and one negative value
+                                      and one negative value
             finance_rate (float): The interest rate you pay for money that is borrowed
             reinvest_rate (float): The interest rate you receive for money that is invested
 
@@ -209,11 +209,11 @@ def dollar_decimal(fractional_dollar: float, fraction: int) -> float:
 
         Parameters:
             fractional_dollar (float): A number expressed as an integer portion and a fractional
-                                       portion, separated by a decimal.
-            fraction (int): The denominator of the fractional portion. Must be positive.
+                                       portion, separated by a decimal
+            fraction (int): The denominator of the fractional portion, must be positive
 
         Returns:
-            decimal_dollar (float): The dollar decimal representation of the fractional dollar.
+            decimal_dollar (float): The dollar decimal representation of the fractional dollar
     '''
     fraction_length = len(str(fraction))
     integer_part = int(fractional_dollar)
@@ -228,11 +228,11 @@ def dollar_fractional(decimal_dollar: float, fraction: int) -> float:
     For example, a value of 1.125 with fraction 16 repesents 1 + 12.5/100 = 1 + 2/16 = 1.02.
 
         Parameters:
-            decimal_dollar (float): The decimal representation of the number.
-            fraction (int): The denominator of the fractional portion. Must be positive
+            decimal_dollar (float): The decimal representation of the number
+            fraction (int): The denominator of the fractional portion, must be positive
 
         Returns:
-            fractional_dollar (float): The dollar fractional representation of the decimal dollar.
+            fractional_dollar (float): The dollar fractional representation of the decimal dollar
     '''
     fraction_length = len(str(fraction))
     integer_part = int(decimal_dollar)
