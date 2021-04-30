@@ -248,7 +248,7 @@ def straight_line_depreciation(purchase_price: float, salvage_value: float, usef
         Parameters:
             purchase_price (float): The total amount paid for the asset
             salvage_value (float): The value of the asset after its useful life
-            useful_life (int): The expected lifespan of an asset, must be greater than 0
+            useful_life (int): The expected lifespan of an asset in periods, must be greater than 0
 
         Returns:
             periodic_depreciation (float): The periodic decrease in value of the asset
