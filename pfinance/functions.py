@@ -274,11 +274,11 @@ def double_declining_balance_depreciation(
 
         Returns:
             double_declining_balance_result (dict):
-                asset_value (list[float]): Annual value of the asset at beginning of year
-                annual_depreciation (list[float]): Annual deprecriation of the asset at end of year
+                asset_value (list[float]): Value of the asset at beginning of the period
+                periodic_depreciation (list[float]): Deprecriation of the asset at end of the period
     '''
     asset_value = [purchase_price * 1.0]
-    annual_depreciation = [0.0]
+    periodic_depreciation = [0.0]
     total_depreciation = 0.0
 
     for _ in range(useful_life):
@@ -290,13 +290,13 @@ def double_declining_balance_depreciation(
             )
         )
 
-        annual_depreciation.append(current_depreciation)
+        periodic_depreciation.append(current_depreciation)
         total_depreciation += current_depreciation
         asset_value.append(asset_value[-1] - current_depreciation)
 
     return {
         'asset_value': asset_value,
-        'annual_depreciation': annual_depreciation,
+        'periodic_depreciation': periodic_depreciation,
     }
 
 
