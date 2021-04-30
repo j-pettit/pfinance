@@ -243,15 +243,15 @@ def dollar_fractional(decimal_dollar: float, fraction: int) -> float:
 
 def straight_line_depreciation(purchase_price: float, salvage_value: float, useful_life: int) -> float:
     '''
-    Calculate the constant depreciation of an asset.
+    Calculates the constant periodic depreciation of an asset.
 
         Parameters:
             purchase_price (float): The total amount paid for the asset
             salvage_value (float): The value of the asset after its useful life
-            useful_life (int): The expected lifespan of an asset, must be greater than 0
+            useful_life (int): The expected lifespan of an asset in periods, must be greater than 0
 
         Returns:
-            annual_depreciation (float): The annual decrease in value of the asset
+            periodic_depreciation (float): The periodic decrease in value of the asset
     '''
 
     return (purchase_price - salvage_value) / useful_life
