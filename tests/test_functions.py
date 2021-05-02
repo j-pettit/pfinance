@@ -1,6 +1,46 @@
 from pfinance import functions
 
 
+def compare_list_float(list1: list[float], list2: list[float], rounding_precision: int) -> bool:
+    '''
+    Helper function that compares two lists of floats to see if they are the same after rounding.
+
+        Parameters:
+            list1 (list[float]): First list of floats to compare
+            list2 (list[float]): Second list of floats to compare
+            rounding (int): How many decimal points to round to for comparison
+
+        Returns:
+            lists_same (bool): True if lists are the same, else False
+    '''
+    if len(list1) != len(list2):
+        print("Lists are different lengths.")
+        print("list1 length:", len(list1))
+        print("list2 length:", len(list2))
+        return False
+    
+    for i in range(len(list1)):
+        if round(list1[i], rounding_precision) != round(list2[i], rounding_precision):
+            print("List index", str(i), "have different values.")
+            print("list1[" + str(i) + "] =", round(list1[i], rounding_precision))
+            print("list2[" + str(i) + "] =", round(list2[i], rounding_precision))
+            return False
+    
+    return True
+
+
+def test_compare_list_float():
+    list1 = [1.12, 1.22, 1.32, 1.42]
+    list2 = [1.12, 1.22, 1.32]
+    list3 = [1.123, 2.123, 3.123, 4.123]
+    list4 = [1.123, 2.123, 3.126, 4.123]
+    list5 = [2.457, 9.528, 9.65, 4.182]
+    list6 = [2.46, 9.53, 9.65, 4.18]
+    assert not(compare_list_float(list1, list2, 1)) # Fail different lengths
+    assert not(compare_list_float(list3, list4, 2)) # Fail different values
+    assert compare_list_float(list5, list6, 2)
+
+
 def test_simple_interest():
     assert functions.simple_interest(100, 0, 10) == 100.00
     assert functions.simple_interest(100, 0.10, 10) == 200.00
