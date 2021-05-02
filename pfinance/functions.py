@@ -257,6 +257,49 @@ def straight_line_depreciation(purchase_price: float, salvage_value: float, usef
     return (purchase_price - salvage_value) / useful_life
 
 
+def double_declining_balance_depreciation(
+    purchase_price: float,
+    salvage_value: float,
+    useful_life: int,
+    factor: float = 2.0,
+) -> dict[str, list[float]]:
+    '''
+    Calculate the depreciation of an asset using double declining balance.
+
+        Parameters:
+            purchase_price (float): The total amount paid for the asset
+            salvage_value (float): The value of the asset after its useful life
+            useful_life (int): The expected lifespan of an asset, must be greater than 0
+            factor (int): The rate at which the balance declines, default 2
+
+        Returns:
+            double_declining_balance_result (dict):
+                asset_value (list[float]): Value of the asset at beginning of the period
+                periodic_depreciation (list[float]): Deprecriation of the asset at end of the period
+    '''
+    asset_value = [float(purchase_price)]
+    periodic_depreciation = [0.0]
+    total_depreciation = 0.0
+
+    for _ in range(useful_life):
+        current_depreciation = max(
+            0,
+            min(
+                (purchase_price - total_depreciation) * factor / useful_life,
+                purchase_price - salvage_value - total_depreciation,
+            )
+        )
+
+        periodic_depreciation.append(current_depreciation)
+        total_depreciation += current_depreciation
+        asset_value.append(asset_value[-1] - current_depreciation)
+
+    return {
+        'asset_value': asset_value,
+        'periodic_depreciation': periodic_depreciation,
+    }
+
+
 def norberts_gambit(
     quantity: int,
     purchase_price: float,
