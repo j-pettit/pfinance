@@ -308,7 +308,7 @@ def double_declining_balance_depreciation(
         Returns:
             double_declining_balance_result (dict):
                 asset_value (list[float]): Value of the asset at beginning of the period
-                periodic_depreciation (list[float]): Deprecriation of the asset at end of the period
+                periodic_depreciation (list[float]): Depreciation of the asset at end of the period
     '''
     asset_value = [float(purchase_price)]
     periodic_depreciation = [0.0]
