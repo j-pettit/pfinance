@@ -18,14 +18,14 @@ def compare_list_float(list1: list[float], list2: list[float], rounding_precisio
         print("list1 length:", len(list1))
         print("list2 length:", len(list2))
         return False
-    
+
     for i in range(len(list1)):
         if round(list1[i], rounding_precision) != round(list2[i], rounding_precision):
             print("List index", str(i), "have different values.")
             print("list1[" + str(i) + "] =", round(list1[i], rounding_precision))
             print("list2[" + str(i) + "] =", round(list2[i], rounding_precision))
             return False
-    
+
     return True
 
 
@@ -36,8 +36,8 @@ def test_compare_list_float():
     list4 = [1.123, 2.123, 3.126, 4.123]
     list5 = [2.457, 9.528, 9.65, 4.182]
     list6 = [2.46, 9.53, 9.65, 4.18]
-    assert not(compare_list_float(list1, list2, 1)) # Fail different lengths
-    assert not(compare_list_float(list3, list4, 2)) # Fail different values
+    assert not(compare_list_float(list1, list2, 1))  # Fail different lengths
+    assert not(compare_list_float(list3, list4, 2))  # Fail different values
     assert compare_list_float(list5, list6, 2)
 
 
@@ -113,10 +113,14 @@ def test_straight_line_depreciation():
 
 
 def test_sum_of_years_depreciation():
-    asset_value1 = []
-    depreciation1 = []
-    asset_value2 = []
-    depreciation2 = []
+    asset_value1 = [1000.0, 673.33, 412.00, 216.00, 85.33, 20.00]
+    depreciation1 = [0.0, 326.67, 261.33, 196.00, 130.67, 65.33]
+    asset_value2 = [12345, 9339.00, 6762.43, 4615.29, 2897.57, 1609.29, 750.43, 321.00]
+    depreciation2 = [0.0, 3006.00, 2576.57, 2147.14, 1717.71, 1288.29, 858.86, 429.43]
+    assert compare_list_float(functions.sum_of_years_depreciation(1000, 20, 5)['asset_value'], asset_value1, 2)
+    assert compare_list_float(functions.sum_of_years_depreciation(1000, 20, 5)['periodic_depreciation'], depreciation1, 2)
+    assert compare_list_float(functions.sum_of_years_depreciation(12345, 321, 7)['asset_value'], asset_value2, 2)
+    assert compare_list_float(functions.sum_of_years_depreciation(12345, 321, 7)['periodic_depreciation'], depreciation2, 2)
 
 
 def test_double_declining_balance_depreciation():
