@@ -257,6 +257,39 @@ def straight_line_depreciation(purchase_price: float, salvage_value: float, usef
     return (purchase_price - salvage_value) / useful_life
 
 
+def sum_of_years_depreciation(purchase_price: float, salvage_value: float, useful_life: int) -> dict[str, list[float]]:
+    '''
+    Calculate the depreciation of an asset using sum of years depreciation.
+
+        Parameters:
+            purchase_price (float): The total amount paid for the asset
+            salvage_value (float): The value of the asset after its useful life
+            useful_life (int): The expected lifespan of an asset, must be greater than 0
+
+        Returns:
+            sum_of_years_result (dict):
+                asset_value (list[float]): Value of the asset at beginning of the period
+                periodic_depreciation (list[float]): Depreciation of the asset at end of the period
+    '''
+    total_years = useful_life * (useful_life + 1) / 2
+    asset_value = [float(purchase_price)]
+    periodic_depreciation = [0.0]
+
+    for i in range(useful_life, 0, -1):
+        current_depreciation = (purchase_price - salvage_value) * i / total_years
+        periodic_depreciation.append(current_depreciation)
+        asset_value.append(asset_value[-1] - current_depreciation)
+
+    print(asset_value, periodic_depreciation)
+
+    return {
+        'asset_value': asset_value,
+        'periodic_depreciation': periodic_depreciation
+    }
+
+sum_of_years_depreciation(1100, 100, 5)
+
+
 def double_declining_balance_depreciation(
     purchase_price: float,
     salvage_value: float,
