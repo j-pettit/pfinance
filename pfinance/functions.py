@@ -287,8 +287,6 @@ def sum_of_years_depreciation(purchase_price: float, salvage_value: float, usefu
         'periodic_depreciation': periodic_depreciation
     }
 
-sum_of_years_depreciation(1100, 100, 5)
-
 
 def double_declining_balance_depreciation(
     purchase_price: float,

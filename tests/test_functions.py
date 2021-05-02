@@ -72,6 +72,13 @@ def test_straight_line_depreciation():
     assert functions.straight_line_depreciation(30000, 7500, 10) == 2250
 
 
+def test_sum_of_years_depreciation():
+    asset_value1 = []
+    depreciation1 = []
+    asset_value2 = []
+    depreciation2 = []
+
+
 def test_double_declining_balance_depreciation():
     asset_value1 = [10000.0, 6000.0, 3600.0, 2160.0, 2000.0, 2000.0]
     depreciation1 = [0.0, 4000.0, 2400.0, 1440.0, 160.0, 0.0]
