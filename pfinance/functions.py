@@ -262,14 +262,14 @@ def double_declining_balance_depreciation(
     salvage_value: float,
     useful_life: int,
     factor: float = 2.0,
-) -> dict[list[float], list[float]]:
+) -> dict[str, list[float]]:
     '''
     Calculate the depreciation of an asset using double declining balance.
 
         Parameters:
             purchase_price (float): The total amount paid for the asset
             salvage_value (float): The value of the asset after its useful life
-            uselife_life (int): The expected lifespan of an asset, must be greater than 0
+            useful_life (int): The expected lifespan of an asset, must be greater than 0
             factor (int): The rate at which the balance declines, default 2
 
         Returns:
@@ -277,7 +277,7 @@ def double_declining_balance_depreciation(
                 asset_value (list[float]): Value of the asset at beginning of the period
                 periodic_depreciation (list[float]): Deprecriation of the asset at end of the period
     '''
-    asset_value = [purchase_price * 1.0]
+    asset_value = [float(purchase_price)]
     periodic_depreciation = [0.0]
     total_depreciation = 0.0
 
