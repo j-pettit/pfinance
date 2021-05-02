@@ -87,6 +87,11 @@ def test_double_declining_balance_depreciation():
     assert functions.double_declining_balance_depreciation(100, 200, 2)['periodic_depreciation'] == depreciation3
 
 
+def test_units_of_production_depreciation():
+    assert functions.units_of_production_depreciation(25000, 0, 100, 4) == 1000.0
+    assert functions.units_of_production_depreciation(500000, 20000, 240000, 10000) == 20000.0
+
+
 def norberts_gambit():
     assert functions.norberts_gambit(0, 0, 0)['base_value'] == 0
     assert functions.norberts_gambit(10, 50, 45)['base_value'] == 450
