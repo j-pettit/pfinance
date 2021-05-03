@@ -1,6 +1,7 @@
-from pfinance import functions
+from pfinance import conversion, depreciation, general, securities, time_value
 
 
+# Helper functions
 def _compare_list_float(list1, list2, rounding_precision):
     # Compares two lists of floats after rounding.
     if len(list1) != len(list2):
@@ -31,75 +32,73 @@ def test_compare_list_float():
     assert _compare_list_float(list5, list6, 2)
 
 
+# General
 def test_simple_interest():
-    assert functions.simple_interest(100, 0, 10) == 100.00
-    assert functions.simple_interest(100, 0.10, 10) == 200.00
+    assert general.simple_interest(100, 0, 10) == 100.00
+    assert general.simple_interest(100, 0.10, 10) == 200.00
 
 
 def test_compound_interest():
-    assert functions.compound_interest(100, 0, 10) == 100.00
-    assert round(functions.compound_interest(100, 0.10, 10, 12), 2) == 270.70
+    assert general.compound_interest(100, 0, 10) == 100.00
+    assert round(general.compound_interest(100, 0.10, 10, 12), 2) == 270.70
 
 
 def test_effective_interest():
-    assert functions.effective_interest(0, 12) == 0
-    assert round(functions.effective_interest(0.05, 12), 6) == 0.051162
-    assert round(functions.effective_interest(0.0525, 4), 7) == 0.0535427
-    assert round(functions.effective_interest(1.25, 7), 6) == 2.158576
-
-
-def test_future_value_series():
-    assert functions.future_value_series(100, 0, 10) == 1000.00
-    assert round(functions.future_value_series(100, 0.05, 10, 12), 2) == 15528.23
-    assert round(functions.future_value_series(100, 0.05, 10, 12, True), 2) == 15592.93
-
-
-def test_present_value():
-    assert functions.present_value(100, 0, 12, 0, False) == -1200.00
-    assert round(functions.present_value(500, 0.06, 48, 9000, False), 2) == -8374.00
-    assert round(functions.present_value(200, 0.07, 36, 1000, True), 2) == -2877.07
+    assert general.effective_interest(0, 12) == 0
+    assert round(general.effective_interest(0.05, 12), 6) == 0.051162
+    assert round(general.effective_interest(0.0525, 4), 7) == 0.0535427
+    assert round(general.effective_interest(1.25, 7), 6) == 2.158576
 
 
 def test_loan_payment():
-    assert functions.loan_payment(1000, 0, 1, 10) == 100.00
-    assert round(functions.loan_payment(100000, 0.10, 12, 60), 2) == 2124.70
-    assert round(functions.loan_payment(150000, 0.10, 12, 60, 50000), 2) == 2124.70
+    assert general.loan_payment(1000, 0, 1, 10) == 100.00
+    assert round(general.loan_payment(100000, 0.10, 12, 60), 2) == 2124.70
+    assert round(general.loan_payment(150000, 0.10, 12, 60, 50000), 2) == 2124.70
+
+
+# Time Value
+def test_future_value_series():
+    assert time_value.future_value_series(100, 0, 10) == 1000.00
+    assert round(time_value.future_value_series(100, 0.05, 10, 12), 2) == 15528.23
+    assert round(time_value.future_value_series(100, 0.05, 10, 12, True), 2) == 15592.93
+
+
+def test_present_value():
+    assert time_value.present_value(100, 0, 12, 0, False) == -1200.00
+    assert round(time_value.present_value(500, 0.06, 48, 9000, False), 2) == -8374.00
+    assert round(time_value.present_value(200, 0.07, 36, 1000, True), 2) == -2877.07
 
 
 def test_discounted_cash_flow():
-    assert functions.discounted_cash_flow([], 0) == 0.00
-    assert round(functions.discounted_cash_flow([1000, 1000, 4000, 4000, 6000], 0.05), 2) == 13306.73
+    assert time_value.discounted_cash_flow([], 0) == 0.00
+    assert round(time_value.discounted_cash_flow([1000, 1000, 4000, 4000, 6000], 0.05), 2) == 13306.73
 
 
 def test_modified_internal_rate_of_return():
-    assert functions.modified_internal_rate_of_return([], 0.1, 0.1) is None
-    assert functions.modified_internal_rate_of_return([10, 10], 0.1, 0.1) is None
-    assert functions.modified_internal_rate_of_return([-10, -10], 0.1, 0.1) is None
-    assert round(functions.modified_internal_rate_of_return([-120000, 39000, 30000, 21000, 37000], 0.1, 0.12), 3) == 0.063
-    assert round(functions.modified_internal_rate_of_return([24, -96, -52, 27, -17, 15, -2, 0, 0], 0.05, 0.07), 3) == -0.056
+    assert time_value.modified_internal_rate_of_return([], 0.1, 0.1) is None
+    assert time_value.modified_internal_rate_of_return([10, 10], 0.1, 0.1) is None
+    assert time_value.modified_internal_rate_of_return([-10, -10], 0.1, 0.1) is None
+    assert round(time_value.modified_internal_rate_of_return([-120000, 39000, 30000, 21000, 37000], 0.1, 0.12), 3) == 0.063
+    assert round(time_value.modified_internal_rate_of_return([24, -96, -52, 27, -17, 15, -2, 0, 0], 0.05, 0.07), 3) == -0.056
 
 
-def test_bond_coupon_rate():
-    assert functions.bond_coupon_rate(1000, 0) == 0.00
-    assert functions.bond_coupon_rate(1000, 10) == 0.01
-    assert functions.bond_coupon_rate(1000, 25, 5) == 0.125
-
-
+# Conversion
 def test_dollar_decimal():
-    assert round(functions.dollar_decimal(1.2, 16), 2) == 2.25
-    assert round(functions.dollar_decimal(9000.4123, 200), 4) == 9002.0615
-    assert round(functions.dollar_decimal(703.238, 23), 5) == 704.03478
+    assert round(conversion.dollar_decimal(1.2, 16), 2) == 2.25
+    assert round(conversion.dollar_decimal(9000.4123, 200), 4) == 9002.0615
+    assert round(conversion.dollar_decimal(703.238, 23), 5) == 704.03478
 
 
 def test_dollar_fractional():
-    assert (round(functions.dollar_fractional(1.125, 16), 2)) == 1.02
-    assert (round(functions.dollar_fractional(1.125, 32), 2)) == 1.04
-    assert (round(functions.dollar_fractional(738.526, 29), 5)) == 738.15254
+    assert (round(conversion.dollar_fractional(1.125, 16), 2)) == 1.02
+    assert (round(conversion.dollar_fractional(1.125, 32), 2)) == 1.04
+    assert (round(conversion.dollar_fractional(738.526, 29), 5)) == 738.15254
 
 
+# Depreciation
 def test_straight_line_depreciation():
-    assert round(functions.straight_line_depreciation(2000, 500, 5)) == 300
-    assert functions.straight_line_depreciation(30000, 7500, 10) == 2250
+    assert round(depreciation.straight_line_depreciation(2000, 500, 5)) == 300
+    assert depreciation.straight_line_depreciation(30000, 7500, 10) == 2250
 
 
 def test_sum_of_years_depreciation():
@@ -109,12 +108,16 @@ def test_sum_of_years_depreciation():
     depreciation2 = [0.0, 3006.00, 2576.57, 2147.14, 1717.71, 1288.29, 858.86, 429.43]
     asset_value3 = [100.0, 0.0]
     depreciation3 = [0.0, 100.0]
-    assert _compare_list_float(functions.sum_of_years_depreciation(1000, 20, 5)['asset_value'], asset_value1, 2)
-    assert _compare_list_float(functions.sum_of_years_depreciation(1000, 20, 5)['periodic_depreciation'], depreciation1, 2)
-    assert _compare_list_float(functions.sum_of_years_depreciation(12345, 321, 7)['asset_value'], asset_value2, 2)
-    assert _compare_list_float(functions.sum_of_years_depreciation(12345, 321, 7)['periodic_depreciation'], depreciation2, 2)
-    assert _compare_list_float(functions.sum_of_years_depreciation(100, 0, 1)['asset_value'], asset_value3, 2)
-    assert _compare_list_float(functions.sum_of_years_depreciation(100, 0, 1)['periodic_depreciation'], depreciation3, 2)
+    assert _compare_list_float(depreciation.sum_of_years_depreciation(1000, 20, 5)['asset_value'], asset_value1, 2)
+    assert _compare_list_float(depreciation.sum_of_years_depreciation(1000, 20, 5)['periodic_depreciation'], depreciation1, 2)
+    assert _compare_list_float(depreciation.sum_of_years_depreciation(12345, 321, 7)['asset_value'], asset_value2, 2)
+    assert _compare_list_float(
+        depreciation.sum_of_years_depreciation(12345, 321, 7)['periodic_depreciation'],
+        depreciation2,
+        2
+    )
+    assert _compare_list_float(depreciation.sum_of_years_depreciation(100, 0, 1)['asset_value'], asset_value3, 2)
+    assert _compare_list_float(depreciation.sum_of_years_depreciation(100, 0, 1)['periodic_depreciation'], depreciation3, 2)
 
 
 def test_double_declining_balance_depreciation():
@@ -127,68 +130,75 @@ def test_double_declining_balance_depreciation():
     asset_value4 = [100.0, 0.0]
     depreciation4 = [0.0, 100.0]
     assert _compare_list_float(
-        functions.double_declining_balance_depreciation(10000, 2000, 5)['asset_value'],
+        depreciation.double_declining_balance_depreciation(10000, 2000, 5)['asset_value'],
         asset_value1,
         2
     )
     assert _compare_list_float(
-        functions.double_declining_balance_depreciation(10000, 2000, 5)['periodic_depreciation'],
+        depreciation.double_declining_balance_depreciation(10000, 2000, 5)['periodic_depreciation'],
         depreciation1,
         2
     )
     assert _compare_list_float(
-        functions.double_declining_balance_depreciation(20000, 1000, 6, 3)['asset_value'],
+        depreciation.double_declining_balance_depreciation(20000, 1000, 6, 3)['asset_value'],
         asset_value2,
         2
     )
     assert _compare_list_float(
-        functions.double_declining_balance_depreciation(20000, 1000, 6, 3)['periodic_depreciation'],
+        depreciation.double_declining_balance_depreciation(20000, 1000, 6, 3)['periodic_depreciation'],
         depreciation2,
         2
     )
     assert _compare_list_float(
-        functions.double_declining_balance_depreciation(100, 200, 2)['asset_value'],
+        depreciation.double_declining_balance_depreciation(100, 200, 2)['asset_value'],
         asset_value3,
         2
     )
     assert _compare_list_float(
-        functions.double_declining_balance_depreciation(100, 200, 2)['periodic_depreciation'],
+        depreciation.double_declining_balance_depreciation(100, 200, 2)['periodic_depreciation'],
         depreciation3,
         2
     )
     assert _compare_list_float(
-        functions.double_declining_balance_depreciation(100, 0, 1)['asset_value'],
+        depreciation.double_declining_balance_depreciation(100, 0, 1)['asset_value'],
         asset_value4,
         2
     )
     assert _compare_list_float(
-        functions.double_declining_balance_depreciation(100, 0, 1)['periodic_depreciation'],
+        depreciation.double_declining_balance_depreciation(100, 0, 1)['periodic_depreciation'],
         depreciation4,
         2
     )
 
 
 def test_units_of_production_depreciation():
-    assert functions.units_of_production_depreciation(25000, 0, 100, 4) == 1000.0
-    assert functions.units_of_production_depreciation(500000, 20000, 240000, 10000) == 20000.0
+    assert depreciation.units_of_production_depreciation(25000, 0, 100, 4) == 1000.0
+    assert depreciation.units_of_production_depreciation(500000, 20000, 240000, 10000) == 20000.0
+
+
+# Securities
+def test_bond_coupon_rate():
+    assert securities.bond_coupon_rate(1000, 0) == 0.00
+    assert securities.bond_coupon_rate(1000, 10) == 0.01
+    assert securities.bond_coupon_rate(1000, 25, 5) == 0.125
 
 
 def norberts_gambit():
-    assert functions.norberts_gambit(0, 0, 0)['base_value'] == 0
-    assert functions.norberts_gambit(10, 50, 45)['base_value'] == 450
-    assert functions.norberts_gambit(10, 50, 45)['base_gain'] == -50
-    assert functions.norberts_gambit(10, 10, 9, 1.1)['base_value'] == 99
-    assert functions.norberts_gambit(10, 10, 9, 1.1)['base_gain'] == -1
-    assert functions.norberts_gambit(10, 10, 9, 1.1)['converted_value'] == 90
-    assert round(functions.norberts_gambit(10, 10, 9, 1.1)['converted_gain'], 2) == 90.91
-    assert functions.norberts_gambit(20, 15, 10, 1.5, 7.5, 5)['base_value'] == 292.5
-    assert functions.norberts_gambit(20, 15, 10, 1.5, 7.5, 5)['base_gain'] == -15
-    assert functions.norberts_gambit(20, 15, 10, 1.5, 7.5, 5)['converted_value'] == 195
-    assert functions.norberts_gambit(20, 15, 10, 1.5, 7.5, 5)['converted_gain'] == -10
+    assert securities.norberts_gambit(0, 0, 0)['base_value'] == 0
+    assert securities.norberts_gambit(10, 50, 45)['base_value'] == 450
+    assert securities.norberts_gambit(10, 50, 45)['base_gain'] == -50
+    assert securities.norberts_gambit(10, 10, 9, 1.1)['base_value'] == 99
+    assert securities.norberts_gambit(10, 10, 9, 1.1)['base_gain'] == -1
+    assert securities.norberts_gambit(10, 10, 9, 1.1)['converted_value'] == 90
+    assert round(securities.norberts_gambit(10, 10, 9, 1.1)['converted_gain'], 2) == 90.91
+    assert securities.norberts_gambit(20, 15, 10, 1.5, 7.5, 5)['base_value'] == 292.5
+    assert securities.norberts_gambit(20, 15, 10, 1.5, 7.5, 5)['base_gain'] == -15
+    assert securities.norberts_gambit(20, 15, 10, 1.5, 7.5, 5)['converted_value'] == 195
+    assert securities.norberts_gambit(20, 15, 10, 1.5, 7.5, 5)['converted_gain'] == -10
 
 
 def test_adjusted_cost_base():
-    test_acb = functions.adjusted_cost_base()
+    test_acb = securities.adjusted_cost_base()
     test_acb.buy(10, 10.00, 5.00)
     assert round(test_acb.get_acb(), 2) == 10.50
     assert round(test_acb.sell(5, 15.00, 5.00), 2) == 17.5
