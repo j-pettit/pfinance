@@ -259,7 +259,7 @@ def straight_line_depreciation(purchase_price: float, salvage_value: float, usef
 
 def sum_of_years_depreciation(purchase_price: float, salvage_value: float, useful_life: int) -> dict[str, list[float]]:
     '''
-    Calculate the depreciation of an asset using sum of years depreciation.
+    Calculates the depreciation of an asset using sum of years depreciation.
 
         Parameters:
             purchase_price (float): The total amount paid for the asset
@@ -268,8 +268,8 @@ def sum_of_years_depreciation(purchase_price: float, salvage_value: float, usefu
 
         Returns:
             sum_of_years_result (dict):
-                asset_value (list[float]): Value of the asset at beginning of the period
-                periodic_depreciation (list[float]): Depreciation of the asset at end of the period
+                asset_value (list[float]): Value of the asset at the beginning of the period
+                periodic_depreciation (list[float]): Depreciation of the asset at the end of the period
     '''
     total_years = useful_life * (useful_life + 1) / 2
     asset_value = [float(purchase_price)]
@@ -279,8 +279,6 @@ def sum_of_years_depreciation(purchase_price: float, salvage_value: float, usefu
         current_depreciation = (purchase_price - salvage_value) * i / total_years
         periodic_depreciation.append(current_depreciation)
         asset_value.append(asset_value[-1] - current_depreciation)
-
-    print(asset_value, periodic_depreciation)
 
     return {
         'asset_value': asset_value,
@@ -295,7 +293,7 @@ def double_declining_balance_depreciation(
     factor: float = 2.0,
 ) -> dict[str, list[float]]:
     '''
-    Calculate the depreciation of an asset using double declining balance.
+    Calculates the depreciation of an asset using double declining balance.
 
         Parameters:
             purchase_price (float): The total amount paid for the asset
@@ -305,8 +303,8 @@ def double_declining_balance_depreciation(
 
         Returns:
             double_declining_balance_result (dict):
-                asset_value (list[float]): Value of the asset at beginning of the period
-                periodic_depreciation (list[float]): Depreciation of the asset at end of the period
+                asset_value (list[float]): Value of the asset at the beginning of the period
+                periodic_depreciation (list[float]): Depreciation of the asset at the end of the period
     '''
     asset_value = [float(purchase_price)]
     periodic_depreciation = [0.0]

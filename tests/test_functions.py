@@ -1,18 +1,8 @@
 from pfinance import functions
 
 
-def compare_list_float(list1: list[float], list2: list[float], rounding_precision: int) -> bool:
-    '''
-    Helper function that compares two lists of floats to see if they are the same after rounding.
-
-        Parameters:
-            list1 (list[float]): First list of floats to compare
-            list2 (list[float]): Second list of floats to compare
-            rounding (int): How many decimal points to round to for comparison
-
-        Returns:
-            lists_same (bool): True if lists are the same, else False
-    '''
+def _compare_list_float(list1, list2, rounding_precision):
+    # Compares two lists of floats after rounding.
     if len(list1) != len(list2):
         print("Lists are different lengths.")
         print("list1 length:", len(list1))
@@ -36,9 +26,9 @@ def test_compare_list_float():
     list4 = [1.123, 2.123, 3.126, 4.123]
     list5 = [2.457, 9.528, 9.65, 4.182]
     list6 = [2.46, 9.53, 9.65, 4.18]
-    assert not(compare_list_float(list1, list2, 1))  # Fail different lengths
-    assert not(compare_list_float(list3, list4, 2))  # Fail different values
-    assert compare_list_float(list5, list6, 2)
+    assert not(_compare_list_float(list1, list2, 1))  # Fail different lengths
+    assert not(_compare_list_float(list3, list4, 2))  # Fail different values
+    assert _compare_list_float(list5, list6, 2)
 
 
 def test_simple_interest():
@@ -117,10 +107,14 @@ def test_sum_of_years_depreciation():
     depreciation1 = [0.0, 326.67, 261.33, 196.00, 130.67, 65.33]
     asset_value2 = [12345, 9339.00, 6762.43, 4615.29, 2897.57, 1609.29, 750.43, 321.00]
     depreciation2 = [0.0, 3006.00, 2576.57, 2147.14, 1717.71, 1288.29, 858.86, 429.43]
-    assert compare_list_float(functions.sum_of_years_depreciation(1000, 20, 5)['asset_value'], asset_value1, 2)
-    assert compare_list_float(functions.sum_of_years_depreciation(1000, 20, 5)['periodic_depreciation'], depreciation1, 2)
-    assert compare_list_float(functions.sum_of_years_depreciation(12345, 321, 7)['asset_value'], asset_value2, 2)
-    assert compare_list_float(functions.sum_of_years_depreciation(12345, 321, 7)['periodic_depreciation'], depreciation2, 2)
+    asset_value3 = [100.0, 0.0]
+    depreciation3 = [0.0, 100.0]
+    assert _compare_list_float(functions.sum_of_years_depreciation(1000, 20, 5)['asset_value'], asset_value1, 2)
+    assert _compare_list_float(functions.sum_of_years_depreciation(1000, 20, 5)['periodic_depreciation'], depreciation1, 2)
+    assert _compare_list_float(functions.sum_of_years_depreciation(12345, 321, 7)['asset_value'], asset_value2, 2)
+    assert _compare_list_float(functions.sum_of_years_depreciation(12345, 321, 7)['periodic_depreciation'], depreciation2, 2)
+    assert _compare_list_float(functions.sum_of_years_depreciation(100, 0, 1)['asset_value'], asset_value3, 2)
+    assert _compare_list_float(functions.sum_of_years_depreciation(100, 0, 1)['periodic_depreciation'], depreciation3, 2)
 
 
 def test_double_declining_balance_depreciation():
@@ -130,34 +124,46 @@ def test_double_declining_balance_depreciation():
     depreciation2 = [0.0, 10000.0, 5000.0, 2500.0, 1250.0, 250.0, 0.0]
     asset_value3 = [100.0, 100.0, 100.0]
     depreciation3 = [0.0, 0.0, 0.0]
-    assert compare_list_float(
+    asset_value4 = [100.0, 0.0]
+    depreciation4 = [0.0, 100.0]
+    assert _compare_list_float(
         functions.double_declining_balance_depreciation(10000, 2000, 5)['asset_value'],
         asset_value1,
         2
     )
-    assert compare_list_float(
+    assert _compare_list_float(
         functions.double_declining_balance_depreciation(10000, 2000, 5)['periodic_depreciation'],
         depreciation1,
         2
     )
-    assert compare_list_float(
+    assert _compare_list_float(
         functions.double_declining_balance_depreciation(20000, 1000, 6, 3)['asset_value'],
         asset_value2,
         2
     )
-    assert compare_list_float(
+    assert _compare_list_float(
         functions.double_declining_balance_depreciation(20000, 1000, 6, 3)['periodic_depreciation'],
         depreciation2,
         2
     )
-    assert compare_list_float(
+    assert _compare_list_float(
         functions.double_declining_balance_depreciation(100, 200, 2)['asset_value'],
         asset_value3,
         2
     )
-    assert compare_list_float(
+    assert _compare_list_float(
         functions.double_declining_balance_depreciation(100, 200, 2)['periodic_depreciation'],
         depreciation3,
+        2
+    )
+    assert _compare_list_float(
+        functions.double_declining_balance_depreciation(100, 0, 1)['asset_value'],
+        asset_value4,
+        2
+    )
+    assert _compare_list_float(
+        functions.double_declining_balance_depreciation(100, 0, 1)['periodic_depreciation'],
+        depreciation4,
         2
     )
 
