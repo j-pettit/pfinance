@@ -253,7 +253,6 @@ def straight_line_depreciation(purchase_price: float, salvage_value: float, usef
         Returns:
             periodic_depreciation (float): The periodic decrease in value of the asset
     '''
-
     return (purchase_price - salvage_value) / useful_life
 
 
@@ -298,6 +297,27 @@ def double_declining_balance_depreciation(
         'asset_value': asset_value,
         'periodic_depreciation': periodic_depreciation,
     }
+
+
+def units_of_production_depreciation(
+    purchase_price: float,
+    salvage_value: float,
+    useful_life: int,
+    units_produced: int,
+) -> float:
+    '''
+    Calculates the depreciation for a given period using units of production depreciation.
+
+        Parameters:
+            purchase_price (float): The total amount paid for the asset
+            salvage_value (float): The value of the asset after its useful life
+            useful_life (int): The total number of units the asset is expected to produce
+            units_produced (int): The number of units produced by the asset during a single period
+
+        Returns:
+            depreciation (float): The depreciation of the asset for a single period
+    '''
+    return (units_produced / useful_life) * (purchase_price - salvage_value)
 
 
 def norberts_gambit(
