@@ -130,12 +130,36 @@ def test_double_declining_balance_depreciation():
     depreciation2 = [0.0, 10000.0, 5000.0, 2500.0, 1250.0, 250.0, 0.0]
     asset_value3 = [100.0, 100.0, 100.0]
     depreciation3 = [0.0, 0.0, 0.0]
-    assert functions.double_declining_balance_depreciation(10000, 2000, 5)['asset_value'] == asset_value1
-    assert functions.double_declining_balance_depreciation(10000, 2000, 5)['periodic_depreciation'] == depreciation1
-    assert functions.double_declining_balance_depreciation(20000, 1000, 6, 3)['asset_value'] == asset_value2
-    assert functions.double_declining_balance_depreciation(20000, 1000, 6, 3)['periodic_depreciation'] == depreciation2
-    assert functions.double_declining_balance_depreciation(100, 200, 2)['asset_value'] == asset_value3
-    assert functions.double_declining_balance_depreciation(100, 200, 2)['periodic_depreciation'] == depreciation3
+    assert compare_list_float(
+        functions.double_declining_balance_depreciation(10000, 2000, 5)['asset_value'],
+        asset_value1,
+        2
+    )
+    assert compare_list_float(
+        functions.double_declining_balance_depreciation(10000, 2000, 5)['periodic_depreciation'],
+        depreciation1,
+        2
+    )
+    assert compare_list_float(
+        functions.double_declining_balance_depreciation(20000, 1000, 6, 3)['asset_value'],
+        asset_value2,
+        2
+    )
+    assert compare_list_float(
+        functions.double_declining_balance_depreciation(20000, 1000, 6, 3)['periodic_depreciation'],
+        depreciation2,
+        2
+    )
+    assert compare_list_float(
+        functions.double_declining_balance_depreciation(100, 200, 2)['asset_value'],
+        asset_value3,
+        2
+    )
+    assert compare_list_float(
+        functions.double_declining_balance_depreciation(100, 200, 2)['periodic_depreciation'],
+        depreciation3,
+        2
+    )
 
 
 def norberts_gambit():
