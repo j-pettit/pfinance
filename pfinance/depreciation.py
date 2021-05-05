@@ -1,3 +1,6 @@
+'''Depreciation of assets functions'''
+
+
 def straight_line_depreciation(purchase_price: float, salvage_value: float, useful_life: int) -> float:
     '''
     Calculates the constant periodic depreciation of an asset.

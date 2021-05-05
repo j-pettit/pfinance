@@ -1,3 +1,6 @@
+'''Common finance functions'''
+
+
 def simple_interest(principle: float, interest_rate: float, periods: int) -> float:
     '''
     Returns the total value of an investment earning simple interest.
