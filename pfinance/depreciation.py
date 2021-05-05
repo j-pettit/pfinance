@@ -107,3 +107,45 @@ def units_of_production_depreciation(
             depreciation (float): The depreciation of the asset for a single period
     '''
     return (units_produced / useful_life) * (purchase_price - salvage_value)
+
+
+def declining_balance(
+    purchase_price: float,
+    salvage_value: float,
+    useful_life: int,
+    sub_periods: int = 12,
+) -> dict[str, list[float]]:
+    '''
+    Calculates the depreciation of an asset using declining balance.
+
+        Parameters:
+            purchase_price (float): The total amount paid for the asset
+            salvage_value (float): The value of the asset after its useful life
+            useful_life (int): The expected lifespan of an asset, must be greater than 0
+            sub_periods (int): The number of sub periods inside the first period (e.g. 12 months in one year). Must be less
+                               than or equal to 12, default 12
+
+        Returns:
+            declining_balance_result (dict):
+                asset_value (list[float]): Value of the asset at the beginning of the period
+                periodic_depreciation (list[float]): Depreciation of the asset at the end of the period
+    '''
+    rate = round(1 - (salvage_value / purchase_price) ** (1 / useful_life), 3)  # Excel rounds rate to 3 decimal places
+    asset_value = [float(purchase_price)]
+    periodic_depreciation = [0.0]
+    periodic_depreciation.append(purchase_price * rate * sub_periods / 12)  # First depreciation is speical case
+
+    for _ in range(useful_life - 1):
+        asset_value.append(asset_value[-1] - periodic_depreciation[-1])
+        periodic_depreciation.append(asset_value[-1] * rate)
+
+    asset_value.append(asset_value[-1] - periodic_depreciation[-1])
+
+    if sub_periods != 12:  # Last depreciation is special case
+        periodic_depreciation.append(asset_value[-1] * rate * (12 - sub_periods) / 12)
+        asset_value.append(asset_value[-1] - periodic_depreciation[-1])
+
+    return {
+        'asset_value': asset_value,
+        'periodic_depreciation': periodic_depreciation,
+    }
