@@ -1,3 +1,6 @@
+'''Time value of money functions'''
+
+
 def future_value_series(
     payment: float,
     interest_rate: float,
