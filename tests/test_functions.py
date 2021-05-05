@@ -176,6 +176,21 @@ def test_units_of_production_depreciation():
     assert depreciation.units_of_production_depreciation(500000, 20000, 240000, 10000) == 20000.0
 
 
+def test_declining_balance():
+    asset_value1 = [1000.0, 681.0, 463.76, 315.82, 215.07, 146.47, 99.74]
+    depreciation1 = [0.0, 319.0, 217.24, 147.94, 100.75, 68.61, 46.72]
+    asset_value2 = [500.0, 448.12, 262.15, 153.36, 89.72, 52.48, 30.70, 21.15]
+    depreciation2 = [0.0, 51.88, 185.97, 108.79, 63.64, 37.23, 21.78, 9.56]
+    asset_value3 = [900.0, 639.08, 321.45, 161.69, 81.33, 40.91, 32.44]
+    depreciation3 = [0.0, 260.93, 317.62, 159.76, 80.36, 40.42, 8.47]
+    assert _compare_list_float(depreciation.declining_balance(1000, 100, 6)['asset_value'], asset_value1, 2)
+    assert _compare_list_float(depreciation.declining_balance(1000, 100, 6)['periodic_depreciation'], depreciation1, 2)
+    assert _compare_list_float(depreciation.declining_balance(500, 20, 6, 3)['asset_value'], asset_value2, 2)
+    assert _compare_list_float(depreciation.declining_balance(500, 20, 6, 3)['periodic_depreciation'], depreciation2, 2)
+    assert _compare_list_float(depreciation.declining_balance(900, 29, 5, 7)['asset_value'], asset_value3, 2)
+    assert _compare_list_float(depreciation.declining_balance(900, 29, 5, 7)['periodic_depreciation'], depreciation3, 2)
+
+
 # Securities
 def test_bond_coupon_rate():
     assert securities.bond_coupon_rate(1000, 0) == 0.00
