@@ -72,6 +72,15 @@ pfinance functions are organized by module.
   </tr>
 </table>
 
+## Example
+Determine the value of a $100.00 investment earning 7% interest compounded monthly after 10 years.
+```python
+>>> from pfinance import general
+>>> value = general.compound_interest(100, 0.07, 10, 12)
+>>> print(round(value, 2))
+200.97
+```
+
 ## Dependencies
 
 pfinance does not rely on any third party dependencies.
