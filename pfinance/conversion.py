@@ -1,3 +1,6 @@
+'''Unit and notation conversion functions'''
+
+
 def dollar_decimal(fractional_dollar: float, fraction: int) -> float:
     '''
     Converts a fractional dollar into a decimal dollar.

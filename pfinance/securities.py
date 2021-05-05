@@ -1,3 +1,6 @@
+'''Securities tracking and analysis functions'''
+
+
 def bond_coupon_rate(face_value: float, payment: float, payment_rate: int = 1) -> float:
     '''
     Returns the coupon rate of a bond.
