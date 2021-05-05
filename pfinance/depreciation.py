@@ -113,7 +113,7 @@ def declining_balance(
     purchase_price: float,
     salvage_value: float,
     useful_life: int,
-    sub_periods: int = 12
+    sub_periods: int = 12,
 ) -> dict[str, list[float]]:
     '''
     Calculates the depreciation of an asset using declining balance.
@@ -130,7 +130,7 @@ def declining_balance(
                 asset_value (list[float]): Value of the asset at the beginning of the period
                 periodic_depreciation (list[float]): Depreciation of the asset at the end of the period
     '''
-    rate = round(1 - (salvage_value / purchase_price) ** (1 / useful_life), 3)
+    rate = round(1 - (salvage_value / purchase_price) ** (1 / useful_life), 3)  # Excel rounds rate to 3 decimal places
     asset_value = [float(purchase_price)]
     periodic_depreciation = [0.0]
     periodic_depreciation.append(purchase_price * rate * sub_periods / 12)  # First depreciation is speical case
