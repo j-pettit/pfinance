@@ -68,3 +68,18 @@ def loan_payment(principal: float, interest_rate: float, payment_frequency: int,
 
     effective_rate = interest_rate / payment_frequency
     return loan_amount * effective_rate * (1 + effective_rate) ** term / ((1 + effective_rate) ** term - 1)
+
+
+def equivalent_interest_rate(present_value: float, future_value: float, periods: int) -> float:
+    '''
+    Returns the equivalent interest rate for the growth of an investment.
+
+        Parameters:
+            present_value (float): The present value of the investment
+            future_value (float): The future value of the investment
+            periods (int): The number of periods elapsed between the future and present value
+
+        Returns:
+            equivalent_interest_rate (float): The equivalent interest rate
+    '''
+    return (future_value / present_value) ** (1 / periods) - 1
