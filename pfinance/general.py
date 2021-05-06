@@ -44,7 +44,6 @@ def effective_interest(nominal_rate: float, periods: int) -> float:
         Returns:
             effective_interest: The effective interest rate
     '''
-
     return (1 + nominal_rate / periods) ** periods - 1
 
 
