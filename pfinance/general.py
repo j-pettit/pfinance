@@ -109,20 +109,16 @@ def loan_payment_schedule(
     '''
     payment = loan_payment(principal, interest_rate, payment_frequency, term, down_payment)
     loan_amount = principal - down_payment
-    principal_payment, interest_payment, cumulative_interest, remaining_balance = [], [], [], []
+    principal_payment, interest_payment, remaining_balance = [], [], []
 
     for _ in range(term):
         interest_payment.append(loan_amount * interest_rate / payment_frequency)
         principal_payment.append(payment - interest_payment[-1])
         remaining_balance.append(loan_amount - principal_payment[-1])
         loan_amount -= principal_payment[-1]
-    
-    
-    for i in range(len(remaining_balance)):
-        print(round(principal_payment[i], 2), round(interest_payment[i], 2), round(cumulative_interest[i]), round(remaining_balance[i], 2))
 
     return {
-        'principal_payment' : principal_payment,
-        'interest_payment' : interest_payment,
-        'remaining_balance' : remaining_balance,
+        'principal_payment': principal_payment,
+        'interest_payment': interest_payment,
+        'remaining_balance': remaining_balance,
     }

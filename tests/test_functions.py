@@ -62,6 +62,27 @@ def test_equivalent_interest_rate():
     assert round(general.equivalent_interest_rate(700, 300, 12), 4) == -0.0682
 
 
+def test_loan_payment_schedule():
+    principal_payment1 = [162.55, 164.17, 165.82, 167.47, 169.15, 170.84]
+    interest_payment1 = [10.0, 8.37, 6.73, 5.07, 3.40, 1.71]
+    remaining_balance1 = [837.45, 673.28, 507.46, 339.99, 170.84, 0.00]
+    principal_payment2 = [74.02, 74.39, 74.77, 75.14, 75.51, 75.89, 76.27]
+    interest_payment2 = [2.63, 2.26, 1.89, 1.51, 1.14, 0.76, 0.38]
+    remaining_balance2 = [451.98, 377.58, 302.82, 227.68, 152.16, 76.27, 0.0]
+    principal_payment3 = [100.0, 100.0, 100.0, 100.0, 100.0]
+    interest_payment3 = [0.0, 0.0, 0.0, 0.0, 0.0]
+    remaining_balance3 = [400.0, 300.0, 200.0, 100.0, 0.0]
+    assert _compare_list_float(general.loan_payment_schedule(1000, 0.12, 12, 6)['principal_payment'], principal_payment1, 2)
+    assert _compare_list_float(general.loan_payment_schedule(1000, 0.12, 12, 6)['interest_payment'], interest_payment1, 2)
+    assert _compare_list_float(general.loan_payment_schedule(1000, 0.12, 12, 6)['remaining_balance'], remaining_balance1, 2)
+    assert _compare_list_float(general.loan_payment_schedule(526, 0.06, 12, 7)['principal_payment'], principal_payment2, 2)
+    assert _compare_list_float(general.loan_payment_schedule(526, 0.06, 12, 7)['interest_payment'], interest_payment2, 2)
+    assert _compare_list_float(general.loan_payment_schedule(526, 0.06, 12, 7)['remaining_balance'], remaining_balance2, 2)
+    assert _compare_list_float(general.loan_payment_schedule(500, 0, 12, 5)['principal_payment'], principal_payment3, 2)
+    assert _compare_list_float(general.loan_payment_schedule(500, 0, 12, 5)['interest_payment'], interest_payment3, 2)
+    assert _compare_list_float(general.loan_payment_schedule(500, 0, 12, 5)['remaining_balance'], remaining_balance3, 2)
+
+
 # Time Value
 def test_future_value_series():
     assert time_value.future_value_series(100, 0, 10) == 1000.00
