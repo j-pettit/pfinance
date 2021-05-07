@@ -56,6 +56,12 @@ def test_loan_payment():
     assert round(general.loan_payment(150000, 0.10, 12, 60, 50000), 2) == 2124.70
 
 
+def test_equivalent_interest_rate():
+    assert round(general.equivalent_interest_rate(10000, 11000, 96), 7) == 0.0009933
+    assert round(general.equivalent_interest_rate(1000, 10000, 5), 3) == 0.585
+    assert round(general.equivalent_interest_rate(700, 300, 12), 4) == -0.0682
+
+
 # Time Value
 def test_future_value_series():
     assert time_value.future_value_series(100, 0, 10) == 1000.00
