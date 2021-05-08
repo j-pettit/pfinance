@@ -89,7 +89,7 @@ def loan_payment_schedule(
     interest_rate: float,
     payment_frequency: int,
     term: int,
-    down_payment: float = 0
+    down_payment: float = 0,
 ) -> dict[str, list[float]]:
     '''
     Returns the payment schedule for a loan.
