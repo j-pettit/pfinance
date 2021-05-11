@@ -130,7 +130,7 @@ def future_value_schedule(principal: float, interest_schedule: list[float]) -> f
             interest_schedule (list[float]): Schedule of interest rates per period
 
         Returns:
-            future_value (float): The future value of the investment 
+            future_value (float): The future value of the investment
     '''
     for interest in interest_schedule:
         principal *= 1 + interest
