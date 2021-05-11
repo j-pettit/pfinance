@@ -119,3 +119,20 @@ def modified_internal_rate_of_return(cash_flows: list[float], finance_rate: floa
     denominator = discounted_cash_flow(negative_values, finance_rate) * (1 + finance_rate)
 
     return (numerator / denominator) ** (1 / (n - 1)) - 1
+
+
+def future_value_schedule(principal: float, interest_schedule: list[float]) -> float:
+    '''
+    Returns the future value of an investment based on a schedule of interest rates.
+
+        Parameters:
+            principal (float): The intiial investment sum
+            interest_schedule (list[float]): Schedule of interest rates per period
+
+        Returns:
+            future_value (float): The future value of the investment
+    '''
+    for interest in interest_schedule:
+        principal *= 1 + interest
+
+    return principal

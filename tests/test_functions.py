@@ -109,6 +109,12 @@ def test_modified_internal_rate_of_return():
     assert round(time_value.modified_internal_rate_of_return([24, -96, -52, 27, -17, 15, -2, 0, 0], 0.05, 0.07), 3) == -0.056
 
 
+def test_future_value_schedule():
+    assert round(time_value.future_value_schedule(1000, [0.02, 0.03, 0.04, 0.05]), 2) == 1147.26
+    assert round(time_value.future_value_schedule(123.45, [0, 0, 0, 0, 0, 0, 0, 0, 0]), 2) == 123.45
+    assert round(time_value.future_value_schedule(15973, [0.02, 0.09, -0.08, 0.2]), 2) == 19605.69
+
+
 # Conversion
 def test_dollar_decimal():
     assert round(conversion.dollar_decimal(1.2, 16), 2) == 2.25
