@@ -128,6 +128,24 @@ def test_dollar_fractional():
     assert (round(conversion.dollar_fractional(738.526, 29), 5)) == 738.15254
 
 
+def test_percent_to_basis():
+    assert conversion.percent_to_basis(0) == 0
+    assert conversion.percent_to_basis(0.01) == 100
+    assert conversion.percent_to_basis(-0.005) == -50
+
+
+def test_increase_to_basis():
+    assert conversion.increase_to_basis(50, 50) == 0
+    assert round(conversion.increase_to_basis(1000, 1050), 2) == 500
+    assert round(conversion.increase_to_basis(200, 150), 2) == -2500
+
+
+def test_basis_to_percent():
+    assert conversion.basis_to_percent(0) == 0
+    assert conversion.basis_to_percent(100) == 0.01
+    assert conversion.basis_to_percent(-50) == -0.005
+
+
 # Depreciation
 def test_straight_line_depreciation():
     assert round(depreciation.straight_line_depreciation(2000, 500, 5)) == 300
