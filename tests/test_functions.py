@@ -83,6 +83,12 @@ def test_loan_payment_schedule():
     assert _compare_list_float(general.loan_payment_schedule(500, 0, 12, 5)['remaining_balance'], remaining_balance3, 2)
 
 
+def test_number_periods_loan():
+    assert general.number_periods_loan(1000, 0.1, 100) == -1
+    assert round(general.number_periods_loan(1000, 0.1, 200), 2) == 7.27
+    assert round(general.number_periods_loan(7541, 0.06, 864), 2) == 12.73
+
+
 # Time Value
 def test_future_value_series():
     assert time_value.future_value_series(100, 0, 10) == 1000.00

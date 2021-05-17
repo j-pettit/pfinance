@@ -1,4 +1,5 @@
 '''Common finance functions'''
+import math
 
 
 def simple_interest(principle: float, interest_rate: float, periods: int) -> float:
@@ -122,3 +123,22 @@ def loan_payment_schedule(
         'interest_payment': interest_payment,
         'remaining_balance': remaining_balance,
     }
+
+
+def number_periods_loan(principal: float, interest_rate: float, payment: float) -> float:
+    '''
+    Returns the number of periods required to payback a loan with fixed payments.
+
+        Parameters:
+            principal (float): Initial value of the loan
+            interest_rate (float): Interest rate per period, e.g. year
+            payment (float): Constant payment per period, must be negative
+
+        Returns:
+            number_periods (float): Number of periods to payback the loan, -1 if loan can not be paid off
+    '''
+    # Check if loan can be paid back
+    if payment <= (principal * interest_rate):
+        return -1
+
+    return math.log10(payment / (payment - principal * interest_rate)) / math.log10(1 + interest_rate)
