@@ -142,3 +142,33 @@ def number_periods_loan(principal: float, interest_rate: float, payment: float) 
         return -1
 
     return math.log10(payment / (payment - principal * interest_rate)) / math.log10(1 + interest_rate)
+
+
+def sum_product(*lst_args: list[float]) -> float:
+    '''
+    Returns the sum of lists multiplied by eachother. For example, [3, 5, 6, 1] and [4, 2, 7, 8] returns
+    (3 * 4) + (5 * 2) + (6 * 7) + (1 * 8) = 72.
+
+        Parameters:
+            *lst_args (list[float]): Any number of lists to be multiplied and summed together
+
+        Returns:
+            total_sum (float): Total sum of the lists multiplied together. None if lists are different lengths or no
+                               lists passed in
+
+    '''
+    if len({len(i) for i in lst_args}) != 1:  # Use set comprehension to check if list lengths are same
+        return None
+
+    total_sum = 0
+    multiplied = 1
+    len_list = len(lst_args[0])
+
+    for i in range(len_list):
+        for lst in lst_args:
+            multiplied *= lst[i]
+
+        total_sum += multiplied
+        multiplied = 1
+
+    return total_sum

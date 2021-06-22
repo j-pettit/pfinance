@@ -89,6 +89,13 @@ def test_number_periods_loan():
     assert round(general.number_periods_loan(7541, 0.06, 864), 2) == 12.73
 
 
+def test_sum_product():
+    assert general.sum_product() is None
+    assert general.sum_product([1, 2, 3, 4], [1, 2, 3, 4, 5]) is None
+    assert general.sum_product([1, 2, 3, 4, 5], [1, 2, 3, 4, 5]) == 55
+    assert round(general.sum_product([1.2, 2, 2.6, 4], [5.2, 1.7, 8.6, 9.4], [5.5, 2.6, 4.8, 7.5]), 2) == 432.49
+
+
 # Time Value
 def test_future_value_series():
     assert time_value.future_value_series(100, 0, 10) == 1000.00
