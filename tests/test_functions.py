@@ -292,10 +292,16 @@ def norberts_gambit():
     assert securities.norberts_gambit(20, 15, 10, 1.5, 7.5, 5)['converted_gain'] == -10
 
 
-def simple_alpha():
-    assert securities.simple_alpha(0, 0) == 0
-    assert securities.simple_alpha(40, 7.5) == 32.5
-    assert securities.simple_alpha(4, 6.5) == -2.5
+def alpha():
+    assert securities.alpha(0, 0) == 0
+    assert securities.alpha(40, 7.5) == 32.5
+    assert securities.alpha(4, 6.5) == -2.5
+
+
+def expected_rate_of_return():
+    assert securities.expected_rate_of_return(0, 0, 0) == 0
+    assert securities.expected_rate_of_return(0.02, 1.5, 0.02) == 0.05
+    assert securities.expected_rate_of_return(0.10, 1.1, 0.20) == 0.32
 
 
 def test_adjusted_cost_base():
