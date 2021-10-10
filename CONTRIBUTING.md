@@ -19,3 +19,6 @@ Releases are automatically created and published to PYPI on commits with tags be
 - tag the latest commit with `git tag "v<version>"`, e.g. `git tag "v0.0.7"`
 - push the tag to remote `git push origin v<version>`
 - allow the actions to run for the release to be created and published
+
+## Hacktoberfest
+pfinance is open to Hacktoberfest contributions. Feel free to open quality PRs to the library.
