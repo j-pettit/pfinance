@@ -112,6 +112,13 @@ def test_factorial():
         171122452428141311372468338881272839092270544893520369393648040923257279754140647424000000000000000
 
 
+def test_sum_diff_squares():
+    assert general.sum_diff_squares([], []) == 0
+    assert general.sum_diff_squares([5, 2, 3], [3, -1, 4]) == 12
+    assert general.sum_diff_squares([5, 2, 3], [2, 1, 0]) == 33
+    assert round(general.sum_diff_squares([1.1, 2.2, 3.3], [4.4, 5.5, 6.6]), 2) == -76.23
+
+
 # Time Value
 def test_future_value_series():
     assert time_value.future_value_series(100, 0, 10) == 1000.00
