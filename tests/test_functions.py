@@ -277,6 +277,12 @@ def norberts_gambit():
     assert securities.norberts_gambit(20, 15, 10, 1.5, 7.5, 5)['converted_gain'] == -10
 
 
+def simple_alpha():
+    assert securities.simple_alpha(0, 0) == 0
+    assert securities.simple_alpha(40, 7.5) == 32.5
+    assert securities.simple_alpha(4, 6.5) == -2.5
+
+
 def test_adjusted_cost_base():
     test_acb = securities.adjusted_cost_base()
     test_acb.buy(10, 10.00, 5.00)

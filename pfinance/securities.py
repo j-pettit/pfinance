@@ -54,6 +54,20 @@ def norberts_gambit(
     }
 
 
+def simple_alpha(actual_rate_of_return: float, expected_rate_of_return: float) -> float:
+    '''
+    Returns the alpha coefficient for a given actual and expected rate of return
+
+        Parameters:
+            actual_rate_of_return (float): The rate of return achieved
+            expected_rate_of_return (float): The rate of return expected
+
+        Returns:
+            alpha (float): The highest return possible from a minimum amount of investment risk
+    '''
+    return actual_rate_of_return - expected_rate_of_return
+
+
 class adjusted_cost_base:
     '''
     Represents an adjusted cost base tracker
