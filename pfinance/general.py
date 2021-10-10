@@ -155,7 +155,6 @@ def sum_product(*args: list[float]) -> float:
         Returns:
             total_sum (float): Total sum of the lists multiplied together. None if lists are different lengths or no
                                lists passed in
-
     '''
     if len({len(i) for i in args}) != 1:  # Use set comprehension to check if list lengths are same
         return None
