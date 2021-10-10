@@ -172,3 +172,21 @@ def sum_product(*args: list[float]) -> float:
         multiplied = 1
 
     return total_sum
+
+
+def sum_squares(vals: list[float]) -> float:
+    '''
+    Returns the sum of the square of each value in a list. For example, [5,2,1,3] gives 5^2 + 2^2 + 1^2 + 3^2 = 39.
+
+        Parameters:
+            vals (list[float]): List of values
+
+        Returns:
+            total_sum (float): Sum of squares of values in list.
+    '''
+    total_sum = 0
+
+    for val in vals:
+        total_sum += val * val
+
+    return total_sum

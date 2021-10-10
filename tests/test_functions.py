@@ -96,6 +96,13 @@ def test_sum_product():
     assert round(general.sum_product([1.2, 2, 2.6, 4], [5.2, 1.7, 8.6, 9.4], [5.5, 2.6, 4.8, 7.5]), 2) == 432.49
 
 
+def test_sum_squares():
+    assert general.sum_squares([0]) == 0
+    assert general.sum_squares([5, 2, 1, 3]) == 39
+    assert general.sum_squares([-5, 2, -1, 3]) == 39
+    assert round(general.sum_squares([1.1, 2.2, 3.3]), 2) == 16.94
+
+
 # Time Value
 def test_future_value_series():
     assert time_value.future_value_series(100, 0, 10) == 1000.00
