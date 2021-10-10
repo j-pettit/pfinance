@@ -104,6 +104,14 @@ def test_sum_squares():
     assert round(general.sum_squares([1.1, 2.2, 3.3]), 2) == 16.94
 
 
+def test_factorial():
+    assert general.factorial(0) == 1
+    assert general.factorial(1) == 1
+    assert general.factorial(10) == 3628800
+    assert general.factorial(69) == \
+        171122452428141311372468338881272839092270544893520369393648040923257279754140647424000000000000000
+
+
 # Time Value
 def test_future_value_series():
     assert time_value.future_value_series(100, 0, 10) == 1000.00
