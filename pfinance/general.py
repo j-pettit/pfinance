@@ -189,3 +189,24 @@ def sum_squares(vals: list[float]) -> float:
         total_sum += val * val
 
     return total_sum
+
+
+def factorial(num: int) -> int:
+    '''
+    Returns the factorial of an integer greater than or equal to 0.
+
+        Parameters:
+            num (int): Input number
+
+        Returns:
+            result (int): The factorial result
+    '''
+    if num == 0 or num == 1:
+        return 1
+
+    result = 1
+
+    for i in range(2, num + 1):
+        result *= i
+
+    return result
