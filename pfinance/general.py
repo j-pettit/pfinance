@@ -210,3 +210,23 @@ def factorial(num: int) -> int:
         result *= i
 
     return result
+
+
+def sum_diff_squares(lst1: list[float], lst2: list[float]) -> float:
+    '''
+    Returns the sum of the difference of squares of the values in two lists with same size. For example, [5,2,3] and
+    [3,-1,4] gives (5^2 - 3^2) + (2^2 - (-1)^2) + (3^2 - 4^2) = 12.
+
+        Parameters:
+            lst1 (list[float]): List one of values
+            lst2 (list[float]): List two of values
+
+        Returns:
+            total_sum (float): Sum of difference of squares of values in lists.
+    '''
+    total_sum = 0
+
+    for i in range(len(lst1)):
+        total_sum += lst1[i] * lst1[i] - lst2[i] * lst2[i]
+
+    return total_sum
