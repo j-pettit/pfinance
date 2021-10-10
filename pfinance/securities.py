@@ -59,11 +59,11 @@ def alpha(actual_rate_of_return: float, expected_rate_of_return: float) -> float
     Returns the alpha coefficient for a given actual and expected rate of return.
 
         Parameters:
-            actual_rate_of_return (float): The rate of return achieved
-            expected_rate_of_return (float): The rate of return expected
+            actual_rate_of_return (float): Rate of return achieved
+            expected_rate_of_return (float): Rate of return expected
 
         Returns:
-            alpha (float): The highest return possible from a minimum amount of investment risk
+            alpha (float): Highest return possible from a minimum amount of investment risk
     '''
     return actual_rate_of_return - expected_rate_of_return
 
@@ -75,7 +75,10 @@ def expected_rate_of_return(risk_free_rate: float, beta: float, market_risk_prem
         Parameters:
             risk_free_rate (float): Theoretical rate of return for an investment with 0 risk
             beta (float): Volatility of an investment compared to the market as a whole
-            market_risk_premium (float): The premium on return paid for risk on an investment
+            market_risk_premium (float): Premium on return paid for risk on an investment
+
+        Returns:
+            expected_rate_of_return (float): Rate of return expected for an investment
     '''
     return risk_free_rate + beta * market_risk_premium
 
