@@ -35,6 +35,7 @@ def test_compare_list_float():
 # General
 def test_simple_interest():
     assert general.simple_interest(100, 0, 10) == 100.00
+    assert general.simple_interest(0, 0.20, 5) == 0
     assert general.simple_interest(100, 0.10, 10) == 200.00
 
 
